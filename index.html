@@ -12,22 +12,17 @@
         <div></div>
         <div></div>
         <div></div>
-        <div></div>
     </div>
-
-    <!-- Confetti Container (will be populated by JS) -->
-    <div class="confetti-container" id="confettiContainer"></div>
 
     <div class="home-page">
         <video autoplay muted loop playsinline>
-            <source src="media/bg.mp4" type="video/mp4">
+            <source src="media/ScreenRecording_07-22-2026 22-36-32_1.mov" type="video/quicktime">
             Your browser does not support the video tag.
         </video>
-        <audio id="bgm" autoplay loop>
-            <source src="media/bgm.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-        <div class="content">Happy Birthday 18th my Jaymiso</div>
+        <div class="content">
+            <div class="content-line">Happy Birthday 18th</div>
+            <div class="content-line">my Jaymiso</div>
+        </div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -52,53 +47,8 @@
                     }
                     contentDiv.style.transform = `translate(-50%, -50%) scale(${scale})`;
                 }, 50);
-
-                // Initialize confetti effect occasionally
-                setInterval(createConfetti, 3000);
             }
         });
-
-        // Confetti functionality
-        function createConfetti() {
-            const container = document.getElementById('confettiContainer');
-            if (!container) return;
-
-            // Create 5-15 confetti pieces
-            const count = Math.floor(Math.random() * 11) + 5;
-
-            for (let i = 0; i < count; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-
-                // Random position
-                confetti.style.left = Math.random() * 100 + 'vw';
-
-                // Random color
-                const hue = Math.floor(Math.random() * 360);
-                confetti.style.setProperty('--hue', hue);
-
-                // Random size
-                const size = Math.random() * 8 + 5;
-                confetti.style.width = size + 'px';
-                confetti.style.height = size + 'px';
-
-                // Random animation duration and delay
-                const duration = Math.random() * 3 + 2;
-                const delay = Math.random() * 2;
-                confetti.style.animationDuration = duration + 's';
-                confetti.style.animationDelay = delay + 's';
-
-                // Random rotation
-                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-
-                container.appendChild(confetti);
-
-                // Remove after animation ends
-                setTimeout(() => {
-                    confetti.remove();
-                }, (duration + delay) * 1000);
-            }
-        }
     </script>
 </body>
 </html>
