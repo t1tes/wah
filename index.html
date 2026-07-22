@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Jaymiso</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="home-page">
+        <video autoplay muted loop playsinline>
+            <source src="media/bg.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <audio id="bgm" autoplay loop>
+            <source src="media/bgm.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <div class="content">Happy Birthday 18th my Jaymiso</div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contentDiv = document.querySelector('.content');
+            if (contentDiv) {
+                // Make text clickable to go to menu
+                contentDiv.style.cursor = 'pointer';
+                contentDiv.addEventListener('click', function() {
+                    window.location.href = 'menu.html';
+                });
+
+                // Add a subtle pulse animation
+                let scale = 1;
+                let growing = true;
+                setInterval(() => {
+                    if (growing) {
+                        scale += 0.003;
+                        if (scale >= 1.02) growing = false;
+                    } else {
+                        scale -= 0.003;
+                        if (scale <= 0.98) growing = true;
+                    }
+                    contentDiv.style.transform = `translate(-50%, -50%) scale(${scale})`;
+                }, 50);
+            }
+        });
+    </script>
+</body>
+</html>

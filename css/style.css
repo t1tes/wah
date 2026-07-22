@@ -1,0 +1,410 @@
+@font-face {
+    font-family: 'PrettyInside';
+    src: url('../fonts/poti.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PunkTypewriter';
+    src: url('../fonts/Punk Typewriter.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #000;
+    color: #fff;
+    font-family: sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utility Classes */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Home Page Styles */
+.home-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+/* Video Background */
+.home-page video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Audio (hidden but functional) */
+.home-page audio {
+    position: absolute;
+    left: -9999px;
+}
+
+/* Main Text */
+.home-page .content {
+    position: relative;
+    text-align: center;
+    color: white;
+    font-family: 'PrettyInside', cursive, sans-serif;
+    font-size: 200px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    text-shadow:
+        0 0 10px rgba(0,0,0,0.8),
+        0 0 20px rgba(0,0,0,0.5),
+        0 0 30px rgba(0,0,0,0.3);
+    z-index: 2;
+    cursor: pointer;
+    user-select: none;
+    line-height: 1;
+    opacity: 0.95;
+    transition: opacity 0.3s ease;
+}
+
+.home-page .content:hover {
+    opacity: 1;
+}
+
+/* Menu Page Styles */
+.menu-page {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: #000;
+    color: #fff;
+    font-family: 'PunkTypewriter', fantasy, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.menu-page .intro-text {
+    max-width: 800px;
+    margin-bottom: 40px;
+    text-align: center;
+    line-height: 1.7;
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+    color: #e0e0e0;
+}
+
+.menu-page .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.menu-page .button-wrapper {
+    text-align: center;
+    width: 180px;
+    transition: transform 0.3s ease;
+}
+
+.menu-page .button-wrapper:hover {
+    transform: translateY(-5px);
+}
+
+.menu-page .button-wrapper img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 3px solid #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: block;
+    margin: 0 auto 12px auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.menu-page .button-wrapper img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(255,255,255,0.4);
+    border-color: #ff0;
+}
+
+.menu-page .button-wrapper label {
+    display: block;
+    margin-top: 8px;
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+/* Letter Group Pages Styles */
+.letter-group-page {
+    position: relative;
+    min-height: 100vh;
+    background: #000;
+    color: #fff;
+    font-family: 'PunkTypewriter', fantasy, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.letter-group-page h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    color: #fff;
+}
+
+.letter-group-page ul {
+    list-style: none;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.letter-group-page li {
+    margin: 18px 0;
+    width: 100%;
+    max-width: 300px;
+}
+
+.letter-group-page a {
+    display: block;
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+}
+
+.letter-group-page a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.1),
+        transparent
+    );
+    transition: left 0.6s ease;
+}
+
+.letter-group-page a:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: #fff;
+    color: #ff0;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255,255,255,0.2);
+}
+
+.letter-group-page a:hover::before {
+    left: 100%;
+}
+
+.letter-group-page a:active {
+    transform: translateY(0);
+}
+
+/* Individual Letter Page Styles */
+.letter-page {
+    position: relative;
+    min-height: 100vh;
+    background: #000;
+    color: #fff;
+    font-family: 'PunkTypewriter', fantasy, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.letter-page h1 {
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.letter-page p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    color: #e0e0e0;
+}
+
+.letter-page .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+    color: #aaa;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.letter-page .back-link:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.1);
+}
+
+.letter-page .back-link:active {
+    transform: scale(0.95);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .home-page .content {
+        font-size: 160px;
+    }
+
+    .menu-page .intro-text {
+        font-size: 1.1rem;
+    }
+
+    .letter-group-page h1 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-page .content {
+        font-size: 120px;
+        letter-spacing: 1.5px;
+    }
+
+    .menu-page .intro-text {
+        font-size: 1rem;
+        padding: 0 15px;
+    }
+
+    .menu-page .button-wrapper {
+        width: 160px;
+    }
+
+    .menu-page .button-wrapper img {
+        width: 130px;
+        height: 130px;
+    }
+
+    .letter-group-page h1 {
+        font-size: 2rem;
+    }
+
+    .letter-group-page a {
+        font-size: 1.2rem;
+        padding: 14px 18px;
+    }
+
+    .letter-page h1 {
+        font-size: 1.8rem;
+    }
+
+    .letter-page p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-page .content {
+        font-size: 80px;
+        letter-spacing: 1px;
+    }
+
+    .menu-page .intro-text {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+
+    .menu-page .button-container {
+        gap: 20px;
+    }
+
+    .menu-page .button-wrapper {
+        width: 140px;
+    }
+
+    .menu-page .button-wrapper img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .letter-group-page h1 {
+        font-size: 1.7rem;
+    }
+
+    .letter-group-page a {
+        font-size: 1.1rem;
+        padding: 12px 16px;
+    }
+
+    .letter-page {
+        padding: 30px 15px;
+    }
+
+    .letter-page h1 {
+        font-size: 1.5rem;
+    }
+
+    .letter-page p {
+        font-size: 1rem;
+    }
+}

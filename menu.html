@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Jaymiso Letters</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="menu-page">
+        <div class="intro-text">
+            Hi Jayme, since we met the year you turned 18, I thought I’d write you 18 letters—one for every year our paths didn't cross. Each one is for a different situation you might go through, just in case you ever need to hear something nice. :)
+        </div>
+        <div class="button-container">
+            <div class="button-wrapper">
+                <img src="media/image3.jpg" alt="Image #3">
+                <label>1</label>
+            </div>
+            <div class="button-wrapper">
+                <img src="media/image4.jpg" alt="Image #4">
+                <label>2</label>
+            </div>
+            <div class="button-wrapper">
+                <img src="media/image5.jpg" alt="Image #5">
+                <label>3</label>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.button-wrapper').forEach((wrapper, index) => {
+                wrapper.style.cursor = 'pointer';
+                wrapper.addEventListener('click', () => {
+                    // Button 1 -> letters 1-6 (letter-group1.html)
+                    // Button 2 -> letters 7-12 (letter-group2.html)
+                    // Button 3 -> letters 13-18 (letter-group3.html)
+                    window.location.href = `letter-group${index + 1}.html`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
