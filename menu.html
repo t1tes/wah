@@ -27,10 +27,12 @@
         </div>
     </div>
     <script>
-        document.querySelectorAll('.button-wrapper').forEach((wrapper, index) => {
-            wrapper.style.cursor = 'pointer';
-            wrapper.addEventListener('click', () => {
-                window.location.href = `letter${index+1}.html`;
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.button-wrapper').forEach((wrapper, index) => {
+                wrapper.style.cursor = 'pointer';
+                wrapper.addEventListener('click', () => {
+                    window.location.href = `letter${index + 1}.html`;
+                });
             });
         });
     </script>
