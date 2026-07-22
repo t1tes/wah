@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Jaymiso Letters</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="menu-page">
+        <div class="intro-text">
+            Hi Jayme, since we met the year you turned 18, I thought I’d write you 18 letters—one for every year our paths didn't cross. Each one is for a different situation you might go through, just in case you ever need to hear something nice. :)
+        </div>
+        <div class="button-container">
+            <div class="button-wrapper">
+                <img src="https://via.placeholder.com/300x300?text=Image+%233" alt="Image #3">
+                <label>1</label>
+            </div>
+            <div class="button-wrapper">
+                <img src="https://via.placeholder.com/300x300?text=Image+%234" alt="Image #4">
+                <label>2</label>
+            </div>
+            <div class="button-wrapper">
+                <img src="https://via.placeholder.com/300x300?text=Image+%235" alt="Image #5">
+                <label>3</label>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.button-wrapper').forEach((wrapper, index) => {
+            wrapper.style.cursor = 'pointer';
+            wrapper.addEventListener('click', () => {
+                window.location.href = `letter${index+1}.html`;
+            });
+        });
+    </script>
+</body>
+</html>

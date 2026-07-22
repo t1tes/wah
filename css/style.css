@@ -1,0 +1,165 @@
+@font-face {
+    font-family: 'PrettyInside';
+    src: url('../fonts/poti.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PunkTypewriter';
+    src: url('../fonts/Punk Typewriter.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+
+/* Home Page */
+#home-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+}
+
+#home-page video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: -2;
+}
+
+#home-page audio {
+    display: none;
+}
+
+#home-page .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-family: 'PrettyInside', sans-serif;
+    font-size: 200px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.7);
+    z-index: -1;
+}
+
+/* Menu Page */
+#menu-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    color: #fff;
+    font-family: 'PunkTypewriter', sans-serif;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 10vh;
+}
+
+#menu-page .intro-text {
+    max-width: 80%;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    line-height: 1.4;
+}
+
+#menu-page .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+#menu-page .button-wrapper {
+    text-align: center;
+}
+
+#menu-page .button-wrapper img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 3px solid #fff;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#menu-page .button-wrapper img:hover {
+    transform: scale(1.05);
+}
+
+#menu-page .button-wrapper label {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+/* Letter Pages */
+.letter-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    color: #fff;
+    font-family: 'PunkTypewriter', sans-serif;
+    overflow-y: auto;
+    padding: 5vh 5vw;
+}
+
+.letter-page h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+.letter-page ul {
+    list-style: none;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.letter-page li {
+    margin: 1rem 0;
+}
+
+.letter-page a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    display: block;
+    padding: 0.5rem 1rem;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.letter-page a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #ff0;
+}
