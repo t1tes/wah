@@ -3,7 +3,10 @@
     src: url('../fonts/poti.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+<<<<<<< HEAD
     font-display: swap;
+=======
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
 }
 
 @font-face {
@@ -11,10 +14,15 @@
     src: url('../fonts/Punk Typewriter.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
+<<<<<<< HEAD
     font-display: swap;
 }
 
 /* Base Styles */
+=======
+}
+
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
 * {
     margin: 0;
     padding: 0;
@@ -25,6 +33,7 @@ html, body {
     height: 100%;
     width: 100%;
     overflow-x: hidden;
+<<<<<<< HEAD
     background-color: #000;
     color: #fff;
     font-family: sans-serif;
@@ -42,11 +51,21 @@ html, body {
 
 /* Home Page Styles */
 .home-page {
+=======
+    overflow-y: auto;
+    background-color: #000;
+    color: #fff;
+}
+
+/* Home Page */
+#home-page {
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
     position: relative;
     width: 100%;
     height: 100vh;
     overflow: hidden;
     background: #000;
+<<<<<<< HEAD
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,6 +74,12 @@ html, body {
 
 /* Video Background */
 .home-page video {
+=======
+}
+
+/* Make video cover the viewport */
+#home-page video {
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
     position: absolute;
     top: 50%;
     left: 50%;
@@ -67,19 +92,34 @@ html, body {
     z-index: -2;
 }
 
+<<<<<<< HEAD
 /* Audio (hidden but functional) */
 .home-page audio {
+=======
+/* Hide audio element but keep it functional */
+#home-page audio {
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
     position: absolute;
     left: -9999px;
 }
 
+<<<<<<< HEAD
 /* Main Text */
 .home-page .content {
     position: relative;
+=======
+/* Text content - FIXED z-index */
+#home-page .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
     text-align: center;
     color: white;
     font-family: 'PrettyInside', cursive, sans-serif;
     font-size: 200px;
+<<<<<<< HEAD
     font-weight: normal;
     letter-spacing: 2px;
     text-shadow:
@@ -144,10 +184,62 @@ html, body {
 }
 
 .menu-page .button-wrapper img {
+=======
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.5);
+    z-index: 1; /* Changed from -1 to 1 */
+    pointer-events: none; /* Prevent text from interfering with clicks initially */
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+/* Make text clickable */
+#home-page .content:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+/* Menu Page */
+#menu-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    color: #fff;
+    font-family: 'PunkTypewriter', fantasy, sans-serif;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#menu-page .intro-text {
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+    text-align: center;
+    line-height: 1.6;
+    font-size: 1.2rem;
+}
+
+#menu-page .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+#menu-page .button-wrapper {
+    text-align: center;
+    width: 180px;
+}
+
+#menu-page .button-wrapper img {
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
     width: 150px;
     height: 150px;
     object-fit: cover;
     border: 3px solid #fff;
+<<<<<<< HEAD
     border-radius: 15px;
     cursor: pointer;
     transition: all 0.4s ease;
@@ -259,12 +351,36 @@ html, body {
 }
 
 /* Individual Letter Page Styles */
+=======
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+    margin: 0 auto 10px auto;
+}
+
+#menu-page .button-wrapper img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255,255,255,0.5);
+}
+
+#menu-page .button-wrapper label {
+    display: block;
+    margin-top: 5px;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+/* Letter Pages */
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
 .letter-page {
     position: relative;
     min-height: 100vh;
     background: #000;
     color: #fff;
     font-family: 'PunkTypewriter', fantasy, sans-serif;
+<<<<<<< HEAD
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -299,10 +415,59 @@ html, body {
     transition: all 0.3s ease;
     padding: 8px 12px;
     border-radius: 8px;
+=======
+    padding: 30px 20px;
+    box-sizing: border-box;
+}
+
+.letter-page h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+}
+
+.letter-page ul {
+    list-style: none;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.letter-page li {
+    margin: 15px 0;
+}
+
+.letter-page a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.4rem;
+    display: block;
+    padding: 12px 20px;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.letter-page a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #ff0;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+}
+
+/* Back link styling */
+.letter-page .back-link {
+    display: inline-block;
+    margin-top: 30px;
+    font-size: 1.1rem;
+    color: #aaa;
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
 }
 
 .letter-page .back-link:hover {
     color: #fff;
+<<<<<<< HEAD
     background: rgba(255,255,255,0.1);
 }
 
@@ -341,10 +506,32 @@ html, body {
     }
 
     .menu-page .button-wrapper img {
+=======
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #home-page .content {
+        font-size: 120px;
+    }
+
+    #menu-page .intro-text {
+        font-size: 1rem;
+    }
+
+    #menu-page .button-wrapper {
+        width: 150px;
+    }
+
+    #menu-page .button-wrapper img {
+        width {
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
         width: 130px;
         height: 130px;
     }
 
+<<<<<<< HEAD
     .letter-group-page h1 {
         font-size: 2rem;
     }
@@ -354,26 +541,42 @@ html, body {
         padding: 14px 18px;
     }
 
+=======
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
     .letter-page h1 {
         font-size: 1.8rem;
     }
 
+<<<<<<< HEAD
     .letter-page p {
         font-size: 1.1rem;
+=======
+    .letter-page a {
+        font-size: 1.2rem;
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
     }
 }
 
 @media (max-width: 480px) {
+<<<<<<< HEAD
     .home-page .content {
+=======
+    #home-page .content {
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
         font-size: 80px;
         letter-spacing: 1px;
     }
 
+<<<<<<< HEAD
     .menu-page .intro-text {
+=======
+    #menu-page .intro-text {
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
         font-size: 0.9rem;
         padding: 0 10px;
     }
 
+<<<<<<< HEAD
     .menu-page .button-container {
         gap: 20px;
     }
@@ -398,13 +601,36 @@ html, body {
 
     .letter-page {
         padding: 30px 15px;
+=======
+    #menu-page .button-container {
+        gap: 15px;
+    }
+
+    #menu-page .button-wrapper {
+        width: 130px;
+    }
+
+    #menu-page .button-wrapper img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .letter-page {
+        padding: 20px 15px;
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
     }
 
     .letter-page h1 {
         font-size: 1.5rem;
     }
 
+<<<<<<< HEAD
     .letter-page p {
         font-size: 1rem;
+=======
+    .letter-page a {
+        font-size: 1.1rem;
+        padding: 10px 15px;
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
     }
 }

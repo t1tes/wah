@@ -7,12 +7,17 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<<<<<<< HEAD
     <div class="menu-page">
+=======
+    <div id="menu-page">
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
         <div class="intro-text">
             Hi Jayme, since we met the year you turned 18, I thought I’d write you 18 letters—one for every year our paths didn't cross. Each one is for a different situation you might go through, just in case you ever need to hear something nice. :)
         </div>
         <div class="button-container">
             <div class="button-wrapper">
+<<<<<<< HEAD
                 <img src="media/image3.jpg" alt="Image #3">
                 <label>1</label>
             </div>
@@ -22,6 +27,17 @@
             </div>
             <div class="button-wrapper">
                 <img src="media/image5.jpg" alt="Image #5">
+=======
+                <img src="https://via.placeholder.com/300x300?text=Image+%233" alt="Image #3">
+                <label>1</label>
+            </div>
+            <div class="button-wrapper">
+                <img src="https://via.placeholder.com/300x300?text=Image+%234" alt="Image #4">
+                <label>2</label>
+            </div>
+            <div class="button-wrapper">
+                <img src="https://via.placeholder.com/300x300?text=Image+%235" alt="Image #5">
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
                 <label>3</label>
             </div>
         </div>
@@ -31,10 +47,14 @@
             document.querySelectorAll('.button-wrapper').forEach((wrapper, index) => {
                 wrapper.style.cursor = 'pointer';
                 wrapper.addEventListener('click', () => {
+<<<<<<< HEAD
                     // Button 1 -> letters 1-6 (letter-group1.html)
                     // Button 2 -> letters 7-12 (letter-group2.html)
                     // Button 3 -> letters 13-18 (letter-group3.html)
                     window.location.href = `letter-group${index + 1}.html`;
+=======
+                    window.location.href = `letter${index + 1}.html`;
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
                 });
             });
         });

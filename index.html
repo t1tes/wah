@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<<<<<<< HEAD
     <div class="home-page">
         <video autoplay muted loop playsinline>
             <source src="media/bg.mp4" type="video/mp4">
@@ -14,11 +15,24 @@
         </video>
         <audio id="bgm" autoplay loop>
             <source src="media/bgm.mp3" type="audio/mpeg">
+=======
+    <div id="home-page">
+        <video autoplay muted loop playsinline>
+            <source src="bg.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <audio id="bgm" autoplay loop>
+            <source src="bgm.mp3" type="audio/mpeg">
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
             Your browser does not support the audio element.
         </audio>
         <div class="content">Happy Birthday 18th my Jaymiso</div>
     </div>
     <script>
+<<<<<<< HEAD
+=======
+        // Wait for DOM to be fully loaded
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
         document.addEventListener('DOMContentLoaded', function() {
             const contentDiv = document.querySelector('.content');
             if (contentDiv) {
@@ -33,10 +47,17 @@
                 let growing = true;
                 setInterval(() => {
                     if (growing) {
+<<<<<<< HEAD
                         scale += 0.003;
                         if (scale >= 1.02) growing = false;
                     } else {
                         scale -= 0.003;
+=======
+                        scale += 0.005;
+                        if (scale >= 1.02) growing = false;
+                    } else {
+                        scale -= 0.005;
+>>>>>>> 96437e1ff96d439be6dfbd83a314310961385e29
                         if (scale <= 0.98) growing = true;
                     }
                     contentDiv.style.transform = `translate(-50%, -50%) scale(${scale})`;
