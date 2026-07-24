@@ -5,6 +5,292 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu - Jaymiso Letters</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ===========================
+           MENU-SPECIFIC STYLES
+           =========================== */
+
+        /* --- CSS Custom Properties for consistent motion --- */
+        :root {
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+            --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+            --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+            --duration-fast: 120ms;
+            --duration-normal: 200ms;
+            --duration-slow: 350ms;
+            --duration-entrance: 500ms;
+
+            --color-gold: #ffb24d;
+            --color-gold-dim: #ff7a18;
+            --color-white: #ffffff;
+            --color-text: #e0e0e0;
+            --color-dark: #0a0a0a;
+            --color-border: rgba(255, 255, 255, 0.3);
+
+            --button-size: clamp(160px, 28vw, 220px);
+            --button-gap: clamp(24px, 5vw, 48px);
+        }
+
+        /* --- Reduced Motion --- */
+        @media (prefers-reduced-motion: reduce) {
+            .menu-page *,
+            .menu-page *::before,
+            .menu-page *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .confetti-container { display: none !important; }
+        }
+
+        /* --- Page Layout --- */
+        .menu-page {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: var(--color-dark);
+            color: var(--color-white);
+            font-family: 'JMHTypewriter', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: clamp(60px, 10vh, 100px) clamp(16px, 4vw, 32px) clamp(40px, 8vh, 60px);
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        /* --- Confetti (enhanced) --- */
+        .confetti-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .confetti {
+            position: absolute;
+            top: -10px;
+            width: 10px;
+            height: 10px;
+            opacity: 0.85;
+            animation: confetti-fall linear infinite;
+            border-radius: 2px;
+            will-change: transform, opacity;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 0.85;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* --- Intro Text --- */
+        .intro-text {
+            max-width: 720px;
+            margin-bottom: clamp(40px, 8vh, 60px);
+            text-align: center;
+            line-height: 1.75;
+            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+            letter-spacing: 0.02em;
+            color: var(--color-text);
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.7),
+                0 4px 8px rgba(0, 0, 0, 0.5),
+                0 8px 16px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(24px);
+            animation: intro-reveal var(--duration-entrance) var(--ease-out) forwards;
+            animation-delay: 120ms;
+        }
+
+        @keyframes intro-reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Button Container --- */
+        .button-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-end;
+            gap: var(--button-gap);
+            margin-top: clamp(24px, 5vh, 40px);
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        /* --- Button Wrapper --- */
+        .button-wrapper {
+            --transform-origin: center bottom;
+            text-align: center;
+            width: var(--button-size);
+            flex-shrink: 0;
+            position: relative;
+            display: block;
+            text-decoration: none;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            animation: button-reveal var(--duration-entrance) var(--ease-drawer) forwards;
+            will-change: transform, opacity;
+        }
+
+        .button-wrapper:nth-child(1) { animation-delay: 280ms; }
+        .button-wrapper:nth-child(2) { animation-delay: 360ms; }
+        .button-wrapper:nth-child(3) { animation-delay: 440ms; }
+
+        @keyframes button-reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* --- Button Image --- */
+        .button-wrapper img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border: 2px solid var(--color-border);
+            border-radius: 16px;
+            cursor: pointer;
+            transition:
+                transform var(--duration-normal) var(--ease-out),
+                border-color var(--duration-normal) var(--ease-out),
+                box-shadow var(--duration-normal) var(--ease-out),
+                filter var(--duration-normal) var(--ease-out);
+            display: block;
+            box-shadow:
+                0 4px 16px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+            background: var(--color-dark);
+        }
+
+        /* --- Hover (mouse only) --- */
+        @media (hover: hover) and (pointer: fine) {
+            .button-wrapper:hover img {
+                transform: scale(1.04);
+                border-color: var(--color-gold);
+                box-shadow:
+                    0 8px 32px rgba(0, 0, 0, 0.4),
+                    0 0 0 1px var(--color-gold) inset,
+                    0 0 40px rgba(255, 178, 77, 0.15);
+                filter: brightness(1.05) saturate(1.1);
+            }
+        }
+
+        /* --- Press / Active (all pointers) --- */
+        .button-wrapper:active img {
+            transform: scale(0.97);
+            border-color: var(--color-gold-dim);
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.5),
+                0 0 0 1px var(--color-gold-dim) inset;
+            transition-duration: var(--duration-fast);
+        }
+
+        /* --- Focus Visible (keyboard) --- */
+        .button-wrapper:focus-visible {
+            outline: none;
+        }
+
+        .button-wrapper:focus-visible img {
+            border-color: var(--color-gold);
+            box-shadow:
+                0 0 0 3px var(--color-dark),
+                0 0 0 5px var(--color-gold),
+                0 8px 32px rgba(255, 178, 77, 0.3);
+        }
+
+        /* --- Number Badge --- */
+        .button-number {
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-dark);
+            color: var(--color-white);
+            font-family: 'JMHTypewriter', monospace;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 700;
+            width: clamp(36px, 7vw, 48px);
+            height: clamp(36px, 7vw, 48px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--color-border);
+            box-shadow:
+                0 4px 16px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            z-index: 2;
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.7),
+                0 4px 8px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateX(-50%) translateY(12px) scale(0.9);
+            animation: number-reveal 400ms var(--ease-drawer) forwards;
+            animation-delay: calc(280ms + var(--index, 0) * 80ms + 120ms);
+            will-change: transform, opacity;
+        }
+
+        .button-wrapper:nth-child(1) .button-number { --index: 0; }
+        .button-wrapper:nth-child(2) .button-number { --index: 1; }
+        .button-wrapper:nth-child(3) .button-number { --index: 2; }
+
+        @keyframes number-reveal {
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+        }
+
+        /* --- Hover effect on number (mouse only) --- */
+        @media (hover: hover) and (pointer: fine) {
+            .button-wrapper:hover .button-number {
+                border-color: var(--color-gold);
+                box-shadow:
+                    0 4px 16px rgba(0, 0, 0, 0.5),
+                    0 0 0 1px var(--color-gold) inset,
+                    0 0 24px rgba(255, 178, 77, 0.3);
+                transform: translateX(-50%) translateY(-2px) scale(1.05);
+                transition: all var(--duration-normal) var(--ease-out);
+            }
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 768px) {
+            .button-container {
+                gap: clamp(20px, 4vw, 32px);
+            }
+            .button-wrapper {
+                --button-size: clamp(140px, 40vw, 180px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+                gap: clamp(24px, 6vw, 36px);
+            }
+            .button-wrapper {
+                --button-size: clamp(200px, 70vw, 280px);
+            }
+            .button-number {
+                bottom: -22px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Confetti Container -->
@@ -12,60 +298,161 @@
 
     <div class="menu-page">
         <div class="intro-text">
-            Happy birthday Jayme! Since we met during the year you turned 18, I decided to write you 18 letters, one for each year our paths haven’t crossed. Each one contains things i think you’d like or need to hear whenever you’re going through these moments. I really hope you like it :)
+            Happy birthday Jayme! Since we met during the year you turned 18, I decided to write you 18 letters, one for each year our paths haven't crossed. Each one contains things I think you'd like or need to hear whenever you're going through these moments. I really hope you like it :)
         </div>
+
         <div class="button-container">
-            <a href="letter-group1.html" class="button-wrapper">
-                <img src="media/image3.jpg" alt="Letters 1-6: Early encouragement and foundation">
+            <a href="letter-group1.html" class="button-wrapper" aria-label="Letters 1 through 6: Early encouragement and foundation">
+                <img src="media/image3.jpg" alt="Letters 1-6: Early encouragement and foundation" loading="eager">
                 <span class="button-number">1</span>
             </a>
-            <a href="letter-group2.html" class="button-wrapper">
-                <img src="media/image4.jpg" alt="Letters 7-12: Guidance for growing confidence">
+            <a href="letter-group2.html" class="button-wrapper" aria-label="Letters 7 through 12: Guidance for growing confidence">
+                <img src="media/image4.jpg" alt="Letters 7-12: Guidance for growing confidence" loading="lazy">
                 <span class="button-number">2</span>
             </a>
-            <a href="letter-group3.html" class="button-wrapper">
-                <img src="media/image5.jpg" alt="Letters 13-18: Wisdom for emerging adulthood">
+            <a href="letter-group3.html" class="button-wrapper" aria-label="Letters 13 through 18: Wisdom for emerging adulthood">
+                <img src="media/image5.jpg" alt="Letters 13-18: Wisdom for emerging adulthood" loading="lazy">
                 <span class="button-number">3</span>
             </a>
         </div>
     </div>
+
     <script>
-        // Generate dynamic confetti
-        const confettiContainer = document.querySelector(‘.confetti-container’);
-        const colors = [‘#ff6b6b’, ‘#4ecdc4’, ‘#ffe66d’, ‘#ff6b9a’, ‘#a29bfe’, ‘#fd79a8’, ‘#00cec9’, ‘#fdcb6e’, ‘#e17055’, ‘#74b9ff’, ‘#fab1a0’, ‘#55efc4’, ‘#ffeaa7’, ‘#ff7675’, ‘#a29bfe’];
+        // ===========================
+        // CONFETTI GENERATION
+        // ===========================
+        (function() {
+            const confettiContainer = document.querySelector('.confetti-container');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        function createConfetti() {
-            for (let i = 0; i < 30; i++) {
-                const confetti = document.createElement(‘div’);
-                confetti.className = ‘confetti’;
-                confetti.style.left = Math.random() * 100 + ‘%’;
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.width = Math.random() * 8 + 6 + ‘px’;
-                confetti.style.height = Math.random() * 8 + 6 + ‘px’;
-                confetti.style.animationDuration = Math.random() * 4 + 6 + ‘s’;
-                confetti.style.animationDelay = Math.random() * 5 + ‘s’;
-                confetti.style.borderRadius = Math.random() > 0.5 ? ‘50%’ : ‘2px’;
-                confettiContainer.appendChild(confetti);
+            if (prefersReducedMotion || !confettiContainer) return;
+
+            const colors = [
+                '#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9a', '#a29bfe',
+                '#fd79a8', '#00cec9', '#fdcb6e', '#e17055', '#74b9ff',
+                '#fab1a0', '#55efc4', '#ffeaa7', '#ff7675', '#a29bfe',
+                '#ffb24d', '#ff7a18', '#ffffff'
+            ];
+
+            const confettiCount = 24;
+
+            function createConfetti() {
+                const fragment = document.createDocumentFragment();
+
+                for (let i = 0; i < confettiCount; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+
+                    const size = Math.random() * 6 + 6;
+                    const left = Math.random() * 100;
+                    const duration = Math.random() * 8 + 10;
+                    const delay = Math.random() * 6;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const borderRadius = Math.random() > 0.6 ? '50%' : '2px';
+                    const rotation = Math.random() * 360;
+                    const rotationSpeed = (Math.random() - 0.5) * 720;
+
+                    confetti.style.cssText = `
+                        left: ${left}%;
+                        width: ${size}px;
+                        height: ${size}px;
+                        background-color: ${color};
+                        border-radius: ${borderRadius};
+                        animation-duration: ${duration}s;
+                        animation-delay: ${delay}s;
+                        transform: rotate(${rotation}deg);
+                    `;
+
+                    // Add rotation to the animation via CSS custom property
+                    confetti.style.setProperty('--rotation-end', `${rotation + rotationSpeed}deg`);
+
+                    fragment.appendChild(confetti);
+                }
+
+                confettiContainer.appendChild(fragment);
             }
-        }
 
-        createConfetti();
+            // Add rotation keyframes dynamically
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes confetti-fall {
+                    0% { transform: translateY(-10vh) rotate(var(--rotation-start, 0deg)); opacity: 0.85; }
+                    100% { transform: translateY(110vh) rotate(var(--rotation-end, 720deg)); opacity: 0; }
+                }
+                .confetti { --rotation-start: 0deg; }
+            `;
+            document.head.appendChild(style);
 
-        // Respect reduced motion
-        const prefersReducedMotion = window.matchMedia(‘(prefers-reduced-motion: reduce)’);
-        if (prefersReducedMotion.matches) {
-            confettiContainer.style.display = ‘none’;
-        }
+            // Initialize confetti
+            createConfetti();
 
-        // Button click handlers
-        document.addEventListener(‘DOMContentLoaded’, function() {
-            document.querySelectorAll(‘.button-wrapper’).forEach((wrapper, index) => {
-                wrapper.style.cursor = ‘pointer’;
-                wrapper.addEventListener(‘click’, () => {
-                    window.location.href = `letter-group${index + 1}.html`;
+            // Respect reduced motion changes
+            const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+            mediaQuery.addEventListener('change', (e) => {
+                if (e.matches) {
+                    confettiContainer.style.display = 'none';
+                } else {
+                    confettiContainer.style.display = '';
+                }
+            });
+        })();
+
+        // ===========================
+        // BUTTON INTERACTION ENHANCEMENTS
+        // ===========================
+        (function() {
+            const buttons = document.querySelectorAll('.button-wrapper');
+
+            // Touch-friendly: prevent double-tap zoom on buttons
+            buttons.forEach(btn => {
+                btn.addEventListener('touchstart', function() {}, { passive: true });
+            });
+
+            // Ensure navigation works on click (fallback for any JS issues)
+            buttons.forEach((btn, index) => {
+                btn.addEventListener('click', function(e) {
+                    // Link href handles navigation; this is just a safeguard
+                    const href = this.getAttribute('href');
+                    if (href) {
+                        window.location.href = href;
+                    }
                 });
             });
-        });
+
+            // Optional: Add subtle magnetic effect on mouse move (desktop only)
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+
+            if (!prefersReducedMotion && isFinePointer) {
+                buttons.forEach(btn => {
+                    const img = btn.querySelector('img');
+                    const number = btn.querySelector('.button-number');
+                    let rafId = null;
+
+                    btn.addEventListener('mousemove', (e) => {
+                        if (rafId) return;
+                        rafId = requestAnimationFrame(() => {
+                            const rect = btn.getBoundingClientRect();
+                            const centerX = rect.left + rect.width / 2;
+                            const centerY = rect.top + rect.height / 2;
+                            const deltaX = (e.clientX - centerX) / 30;
+                            const deltaY = (e.clientY - centerY) / 30;
+
+                            img.style.transform = `scale(1.04) translate(${deltaX}px, ${deltaY}px)`;
+                            if (number) {
+                                number.style.transform = `translateX(-50%) translateY(-2px) scale(1.05) translate(${deltaX * 0.5}px, ${deltaY * 0.5}px)`;
+                            }
+                            rafId = null;
+                        });
+                    });
+
+                    btn.addEventListener('mouseleave', () => {
+                        img.style.transform = '';
+                        if (number) number.style.transform = '';
+                    });
+                });
+            }
+        })();
     </script>
 </body>
 </html>
