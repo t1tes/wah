@@ -16,7 +16,7 @@
         <!-- Confetti Container -->
         <div class="confetti-container" aria-hidden="true"></div>
 
-        <div class="content">
+        <div class="content" id="home-content">
             <div class="content-line">Happy 18th Birthday</div>
             <div class="content-line">my Jaymiso!</div>
         </div>
@@ -50,6 +50,11 @@
         if (prefersReducedMotion.matches) {
             confettiContainer.style.display = 'none';
         }
+
+        // Click handler to navigate to menu
+        document.getElementById('home-content').addEventListener('click', () => {
+            window.location.href = 'menu.html';
+        });
     </script>
 </body>
 </html>

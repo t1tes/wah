@@ -3,16 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter 15</title>
+    <title>Letter 1</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Confetti Container -->
+    <div class="confetti-container" aria-hidden="true"></div>
+
     <div class="letter-page">
-        <h1>Letter 15</h1>
-        <p>This is the placeholder content for letter 15. Replace this with your actual letter content.</p>
+        <h1>Letter 1</h1>
+        <p>This is the placeholder content for letter 1. Replace this with your actual letter content.</p>
         <div class="back-link">
-            <a href="letter-group3.html">← Back to Letters</a>
+            <a href="letter-group1.html">← Back to Letters</a>
         </div>
     </div>
+
+    <script>
+        // Generate dynamic confetti
+        const confettiContainer = document.querySelector('.confetti-container');
+        const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9a', '#a29bfe', '#fd79a8', '#00cec9', '#fdcb6e', '#e17055', '#74b9ff', '#fab1a0', '#55efc4', '#ffeaa7', '#ff7675', '#a29bfe'];
+
+        function createConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 8 + 6 + 'px';
+                confetti.style.height = Math.random() * 8 + 6 + 'px';
+                confetti.style.animationDuration = Math.random() * 4 + 6 + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        // Initialize confetti
+        createConfetti();
+
+        // Respect reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (prefersReducedMotion.matches) {
+            confettiContainer.style.display = 'none';
+        }
+    </script>
 </body>
 </html>

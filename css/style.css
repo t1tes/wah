@@ -6,6 +6,24 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'JMHTypewriter';
+    src: url('../fonts/JMH Typewriter.ttf') format('truetype'),
+         url('../fonts/JMH Typewriter.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JMHTypewriter';
+    src: url('../fonts/JMH Typewriter-Bold.ttf') format('truetype'),
+         url('../fonts/JMH Typewriter-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* Base Styles */
 * {
     margin: 0;
@@ -189,7 +207,7 @@ html, body {
     min-height: 100vh;
     background: #000;
     color: #fff;
-    font-family: sans-serif; /* REMOVED PunkTypewriter */
+    font-family: 'JMHTypewriter', monospace;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -206,7 +224,10 @@ html, body {
     font-size: 1.3rem;
     letter-spacing: 0.5px;
     color: #e0e0e0;
-    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.6),
+        0 4px 8px rgba(0, 0, 0, 0.4),
+        0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Updated button container for VERTICAL layout */
@@ -223,6 +244,9 @@ html, body {
     text-align: center;
     width: 220px;
     transition: transform 0.3s ease;
+    position: relative;
+    display: block;
+    text-decoration: none;
 }
 
 .menu-page .button-wrapper:hover {
@@ -248,13 +272,29 @@ html, body {
     border-color: #ff0;
 }
 
-.menu-page .button-wrapper label {
-    display: block;
-    margin-top: 10px;
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-    font-weight: 600;
+/* Number badge on buttons */
+.menu-page .button-number {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000;
     color: #fff;
+    font-family: 'JMHTypewriter', monospace;
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    z-index: 2;
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.6),
+        0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* Letter Group Pages Styles - Updated for vertical buttons too */
@@ -263,7 +303,7 @@ html, body {
     min-height: 100vh;
     background: #000;
     color: #fff;
-    font-family: sans-serif; /* REMOVED PunkTypewriter */
+    font-family: 'JMHTypewriter', monospace;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -277,7 +317,10 @@ html, body {
     margin-bottom: 40px;
     font-size: 2.5rem;
     letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.6),
+        0 4px 8px rgba(0, 0, 0, 0.4),
+        0 8px 16px rgba(0, 0, 0, 0.2);
     color: #fff;
 }
 
@@ -334,7 +377,7 @@ html, body {
     min-height: 100vh;
     background: #000;
     color: #fff;
-    font-family: sans-serif; /* REMOVED PunkTypewriter */
+    font-family: 'JMHTypewriter', monospace;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -348,7 +391,10 @@ html, body {
     margin-bottom: 30px;
     font-size: 2.3rem;
     letter-spacing: 1.5px;
-    text-shadow: 0 0 10px rgba(0,0,0,0.3);
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.6),
+        0 4px 8px rgba(0, 0, 0, 0.4),
+        0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .letter-page p {
@@ -357,6 +403,9 @@ html, body {
     max-width: 600px;
     margin: 0 auto 30px auto;
     color: #e0e0e0;
+    text-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.5),
+        0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .letter-page .back-link {
