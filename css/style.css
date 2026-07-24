@@ -259,8 +259,6 @@ html, body {
     width: 180px;
     height: 180px;
     object-fit: cover;
-    border: 3px solid #fff;
-    border-radius: 15px;
     cursor: pointer;
     transition: all 0.4s ease;
     display: block;
@@ -271,7 +269,6 @@ html, body {
 .menu-page .button-wrapper img:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 25px rgba(255,255,255,0.3);
-    border-color: #ff0;
 }
 
 /* Number badge on buttons */
