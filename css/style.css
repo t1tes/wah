@@ -230,14 +230,16 @@ html, body {
         0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Updated button container for VERTICAL layout */
+/* Updated button container for HORIZONTAL layout */
 .menu-page .button-container {
     display: flex;
-    flex-direction: column; /* Changed to column for vertical layout */
-    align-items: center;
-    gap: 30px;
+    flex-direction: row; /* Changed to row for horizontal layout */
+    justify-content: center;
+    align-items: flex-end; /* Align to bottom so numbers line up */
+    gap: 40px;
     margin-top: 40px;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .menu-page .button-wrapper {
