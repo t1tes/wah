@@ -55,6 +55,13 @@
         document.getElementById('home-content').addEventListener('click', () => {
             window.location.href = 'menu.html';
         });
+
+        // Apply rotation after animation completes
+        setTimeout(() => {
+            document.querySelectorAll('.content-line').forEach(line => {
+                line.classList.add('revealed');
+            });
+        }, 1200); // After last animation (0.4s delay + ~700ms duration + buffer)
     </script>
 </body>
 </html>
