@@ -160,18 +160,11 @@
             width: 100%;
             aspect-ratio: 1;
             object-fit: cover;
-            border: 2px solid var(--color-border);
-            border-radius: 16px;
             cursor: pointer;
             transition:
                 transform var(--duration-normal) var(--ease-out),
-                border-color var(--duration-normal) var(--ease-out),
-                box-shadow var(--duration-normal) var(--ease-out),
                 filter var(--duration-normal) var(--ease-out);
             display: block;
-            box-shadow:
-                0 4px 16px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
             background: var(--color-dark);
         }
 
@@ -179,11 +172,6 @@
         @media (hover: hover) and (pointer: fine) {
             .button-wrapper:hover img {
                 transform: scale(1.04);
-                border-color: var(--color-gold);
-                box-shadow:
-                    0 8px 32px rgba(0, 0, 0, 0.4),
-                    0 0 0 1px var(--color-gold) inset,
-                    0 0 40px rgba(255, 178, 77, 0.15);
                 filter: brightness(1.05) saturate(1.1);
             }
         }
@@ -191,10 +179,6 @@
         /* --- Press / Active (all pointers) --- */
         .button-wrapper:active img {
             transform: scale(0.97);
-            border-color: var(--color-gold-dim);
-            box-shadow:
-                0 2px 8px rgba(0, 0, 0, 0.5),
-                0 0 0 1px var(--color-gold-dim) inset;
             transition-duration: var(--duration-fast);
         }
 
@@ -204,7 +188,6 @@
         }
 
         .button-wrapper:focus-visible img {
-            border-color: var(--color-gold);
             box-shadow:
                 0 0 0 3px var(--color-dark),
                 0 0 0 5px var(--color-gold),
