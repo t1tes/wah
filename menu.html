@@ -195,36 +195,28 @@
                 0 8px 32px rgba(255, 178, 77, 0.3);
         }
 
-        /* --- Number Badge --- */
+        /* --- Number Label (beneath button) --- */
         .button-number {
-            position: absolute;
-            bottom: -18px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--color-dark);
-            color: var(--color-white);
+            position: static;
+            display: block;
+            margin-top: 14px;
+            background: transparent;
+            color: var(--color-gold);
             font-family: 'JMHTypewriter', monospace;
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-size: clamp(1rem, 2.2vw, 1.3rem);
             font-weight: 700;
-            width: clamp(36px, 7vw, 48px);
-            height: clamp(36px, 7vw, 48px);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid var(--color-border);
-            box-shadow:
-                0 4px 16px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-            z-index: 2;
-            text-shadow:
-                0 2px 4px rgba(0, 0, 0, 0.7),
-                0 4px 8px rgba(0, 0, 0, 0.5);
+            width: auto;
+            height: auto;
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
+            text-shadow: none;
             opacity: 0;
-            transform: translateX(-50%) translateY(12px) scale(0.9);
-            animation: number-reveal 400ms var(--ease-drawer) forwards;
-            animation-delay: calc(280ms + var(--index, 0) * 80ms + 120ms);
+            transform: translateY(12px);
+            animation: number-reveal 500ms var(--ease-drawer) forwards;
+            animation-delay: calc(280ms + var(--index, 0) * 80ms + 180ms);
             will-change: transform, opacity;
+            letter-spacing: 0.05em;
         }
 
         .button-wrapper:nth-child(1) .button-number { --index: 0; }
@@ -241,12 +233,10 @@
         /* --- Hover effect on number (mouse only) --- */
         @media (hover: hover) and (pointer: fine) {
             .button-wrapper:hover .button-number {
-                border-color: var(--color-gold);
-                box-shadow:
-                    0 4px 16px rgba(0, 0, 0, 0.5),
-                    0 0 0 1px var(--color-gold) inset,
-                    0 0 24px rgba(255, 178, 77, 0.3);
-                transform: translateX(-50%) translateY(-2px) scale(1.05);
+                color: var(--color-gold);
+                text-shadow:
+                    0 2px 4px rgba(0, 0, 0, 0.7),
+                    0 0 16px rgba(255, 178, 77, 0.4);
                 transition: all var(--duration-normal) var(--ease-out);
             }
         }
