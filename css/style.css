@@ -233,18 +233,20 @@ html, body {
 /* Updated button container for HORIZONTAL layout */
 .menu-page .button-container {
     display: flex;
-    flex-direction: row; /* Changed to row for horizontal layout */
+    flex-direction: row;
     justify-content: center;
-    align-items: flex-end; /* Align to bottom so numbers line up */
+    align-items: flex-end;
     gap: 40px;
     margin-top: 40px;
     width: 100%;
     flex-wrap: wrap;
+    padding-bottom: 60px; /* Extra space for number badges */
 }
 
 .menu-page .button-wrapper {
     text-align: center;
-    width: 220px;
+    width: 300px;
+    max-width: 90vw;
     transition: transform 0.3s ease;
     position: relative;
     display: block;
@@ -252,23 +254,24 @@ html, body {
 }
 
 .menu-page .button-wrapper:hover {
-    transform: translateY(-5px) scale(1.03);
+    transform: translateY(-5px) scale(1.02);
 }
 
 .menu-page .button-wrapper img {
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
     cursor: pointer;
     transition: all 0.4s ease;
     display: block;
     margin: 0 auto;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .menu-page .button-wrapper img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(255,255,255,0.3);
+    transform: scale(1.01);
+    box-shadow: 0 15px 40px rgba(255,255,255,0.2);
 }
 
 /* Number badge on buttons */
