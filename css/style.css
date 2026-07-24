@@ -187,7 +187,7 @@ html, body {
     margin-bottom: 10px;
     opacity: 0;
     transform: translateY(100vh);
-    animation: content-reveal var(--duration-entrance, 700ms) var(--ease-out, cubic-bezier(0.23, 1, 0.32, 1)) forwards;
+    animation: content-reveal var(--duration-entrance, 1100ms) var(--ease-out, cubic-bezier(0.23, 1, 0.32, 1)) forwards;
 }
 
 /* Curve effect: slight rotation for each line to create a shallow arc */
@@ -204,9 +204,17 @@ html, body {
         opacity: 0;
         transform: translateY(100vh);
     }
+    40% {
+        opacity: 0.6;
+        transform: translateY(-25px);
+    }
     60% {
-        opacity: 0.8;
-        transform: translateY(-10px);
+        opacity: 0.85;
+        transform: translateY(8px);
+    }
+    80% {
+        opacity: 0.95;
+        transform: translateY(-4px);
     }
     100% {
         opacity: 1;
