@@ -239,14 +239,16 @@ html, body {
     gap: 40px;
     margin-top: 40px;
     width: 100%;
+    max-width: 800px; /* Match intro-text width */
     flex-wrap: wrap;
     padding-bottom: 60px; /* Extra space for number badges */
 }
 
 .menu-page .button-wrapper {
     text-align: center;
-    width: 300px;
-    max-width: 90vw;
+    flex: 1;
+    max-width: 240px; /* ~1/3 of 800px minus gaps */
+    min-width: 180px;
     transition: transform 0.3s ease;
     position: relative;
     display: block;
