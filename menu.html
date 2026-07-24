@@ -196,7 +196,7 @@
         }
 
         /* --- Number Label (beneath button) --- */
-        .button-number {
+        .menu-page .button-wrapper .button-number {
             position: static;
             display: block;
             margin-top: 16px;
@@ -232,7 +232,7 @@
 
         /* --- Hover effect on number (mouse only) --- */
         @media (hover: hover) and (pointer: fine) {
-            .button-wrapper:hover .button-number {
+            .menu-page .button-wrapper:hover .button-number {
                 color: var(--color-gold);
                 text-shadow:
                     0 2px 4px rgba(0, 0, 0, 0.7),
@@ -414,7 +414,7 @@
 
                             img.style.transform = `scale(1.04) translate(${deltaX}px, ${deltaY}px)`;
                             if (number) {
-                                number.style.transform = `translateX(-50%) translateY(-2px) scale(1.05) translate(${deltaX * 0.5}px, ${deltaY * 0.5}px)`;
+                                number.style.transform = `translateY(-2px) scale(1.05) translate(${deltaX * 0.5}px, ${deltaY * 0.5}px)`;
                             }
                             rafId = null;
                         });
