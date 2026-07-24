@@ -185,39 +185,14 @@ html, body {
 .home-page .content-line {
     display: block;
     margin-bottom: 10px;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: content-reveal 1s ease-out forwards;
 }
 
 /* Curve effect: slight rotation for each line to create a shallow arc */
 .home-page .content-line:nth-child(1) {
     transform: rotate(-1.5deg);
-    animation-delay: 0.2s;
 }
 
 .home-page .content-line:nth-child(2) {
-    transform: rotate(1.5deg);
-    animation-delay: 0.5s;
-}
-
-@keyframes content-reveal {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Apply rotation after animation completes */
-.home-page .content-line:nth-child(1).revealed {
-    transform: rotate(-1.5deg);
-}
-
-.home-page .content-line:nth-child(2).revealed {
     transform: rotate(1.5deg);
 }
 

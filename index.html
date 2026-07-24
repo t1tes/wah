@@ -55,13 +55,6 @@
         document.getElementById('home-content').addEventListener('click', () => {
             window.location.href = 'menu.html';
         });
-
-        // Add revealed class after animation to preserve rotation
-        setTimeout(() => {
-            document.querySelectorAll('.content-line').forEach(line => {
-                line.classList.add('revealed');
-            });
-        }, 1500); // After last animation (0.5s delay + 1s duration)
     </script>
 </body>
 </html>
