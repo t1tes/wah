@@ -158,8 +158,9 @@
         /* --- Button Image --- */
         .button-wrapper img {
             width: 100%;
-            aspect-ratio: 1;
-            object-fit: cover;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
             cursor: pointer;
             transition:
                 transform var(--duration-normal) var(--ease-out),
