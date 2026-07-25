@@ -351,14 +351,12 @@ html, body {
         0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* --- Parallax Card Stack Animation for Letter Lists --- */
-/* The page is the scroll timeline source */
+/* --- Staggered Scroll Reveal for Letter Lists --- */
 .letter-group-page {
+    /* scroll root is the timeline source */
     animation-timeline: scroll(root);
-    perspective: 1000px;
 }
 
-/* Stack container - items overlap */
 .letter-group-page ul {
     list-style: none;
     max-width: 300px;
@@ -367,88 +365,48 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0; /* overlap handled by transform */
-    position: relative;
-    z-index: 1;
+    gap: 28px; /* space between cards */
 }
 
-/* Each card in the stack */
 .letter-group-page li {
     margin: 0;
     width: 100%;
-    /* Stack cards with absolute positioning, centered */
-    position: absolute;
-    top: 50%; /* will be offset by transform */
-    left: 50%;
-    transform-origin: center center;
-    /* Initial state: stacked, scaled down */
     opacity: 0;
-    will-change: transform, opacity, filter;
-    /* Scroll-driven animation per card */
-    animation:
-        card-stack var(--stack-duration, 1s) linear,
-        card-fade var(--fade-duration, 1.5s) ease-out;
+    transform: translateY(60px) scale(0.95);
+    will-change: transform, opacity;
+    /* Scroll-driven staggered reveal */
+    animation: card-reveal 800ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
     animation-timeline: scroll(root);
-    /* Each card's scroll range: enters at its index * 15%, exits at (index+1) * 15% */
-    --card-index: 0;
-    animation-range: entry calc(var(--card-index) * 15%) cover calc((var(--card-index) + 1) * 15%);
+    /* Each card triggers at a different scroll position */
+    --card-order: 0;
+    animation-range: entry calc(var(--card-order) * 8% + 10%) cover calc(var(--card-order) * 8% + 30%);
 }
 
-/* Set --card-index for each child (1-based for nth-child) */
-.letter-group-page li:nth-child(1)  { --card-index: 0; --z: 12; }
-.letter-group-page li:nth-child(2)  { --card-index: 1; --z: 11; }
-.letter-group-page li:nth-child(3)  { --card-index: 2; --z: 10; }
-.letter-group-page li:nth-child(4)  { --card-index: 3; --z: 9; }
-.letter-group-page li:nth-child(5)  { --card-index: 4; --z: 8; }
-.letter-group-page li:nth-child(6)  { --card-index: 5; --z: 7; }
-.letter-group-page li:nth-child(7)  { --card-index: 6; --z: 6; }
-.letter-group-page li:nth-child(8)  { --card-index: 7; --z: 5; }
-.letter-group-page li:nth-child(9)  { --card-index: 8; --z: 4; }
-.letter-group-page li:nth-child(10) { --card-index: 9; --z: 3; }
-.letter-group-page li:nth-child(11) { --card-index: 10; --z: 2; }
-.letter-group-page li:nth-child(12) { --card-index: 11; --z: 1; }
+/* Set order for each card (0-based) */
+.letter-group-page li:nth-child(1)  { --card-order: 0; }
+.letter-group-page li:nth-child(2)  { --card-order: 1; }
+.letter-group-page li:nth-child(3)  { --card-order: 2; }
+.letter-group-page li:nth-child(4)  { --card-order: 3; }
+.letter-group-page li:nth-child(5)  { --card-order: 4; }
+.letter-group-page li:nth-child(6)  { --card-order: 5; }
+.letter-group-page li:nth-child(7)  { --card-order: 6; }
+.letter-group-page li:nth-child(8)  { --card-order: 7; }
+.letter-group-page li:nth-child(9)  { --card-order: 8; }
+.letter-group-page li:nth-child(10) { --card-order: 9; }
+.letter-group-page li:nth-child(11) { --card-order: 10; }
+.letter-group-page li:nth-child(12) { --card-order: 11; }
 
-/* Z-index for layering (bottom cards behind) */
-.letter-group-page li { z-index: var(--z); }
-
-/* Card active state - incoming: scale 0.7 -> 1, translateY 120px -> 0 */
-/* Card leaving: scale 1 -> 0.7, translateY 0 -> -120px */
-@keyframes card-stack {
-    0% {
-        transform: translateX(-50%) translateY(120px) scale(0.7) rotateX(8deg);
-        filter: blur(4px) brightness(0.6);
-    }
-    50% {
-        transform: translateX(-50%) translateY(0) scale(1) rotateX(0deg);
-        filter: blur(0) brightness(1);
-    }
-    100% {
-        transform: translateX(-50%) translateY(-120px) scale(0.7) rotateX(-8deg);
-        filter: blur(4px) brightness(0.6);
-    }
-}
-
-@keyframes card-fade {
-    0%   { opacity: 0; }
-    20%  { opacity: 1; }
-    80%  { opacity: 1; }
-    100% { opacity: 0; }
+@keyframes card-reveal {
+    from { opacity: 0; transform: translateY(60px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 /* Reduced motion fallback */
 @media (prefers-reduced-motion: reduce) {
     .letter-group-page li {
         animation: none !important;
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        transform: none !important;
         opacity: 1 !important;
-        filter: none !important;
-        z-index: auto !important;
-    }
-    .letter-group-page ul {
-        gap: 25px !important;
+        transform: none !important;
     }
 }
 
@@ -456,34 +414,22 @@ html, body {
 @supports not (animation-timeline: scroll()) {
     .letter-group-page li {
         animation: none;
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        transform: none !important;
-        opacity: 1 !important;
-        filter: none !important;
-        z-index: auto !important;
-    }
-    .letter-group-page ul {
-        gap: 25px !important;
+        opacity: 1;
+        transform: none;
     }
     /* Simple staggered entrance */
-    .letter-group-page li:nth-child(1)  { animation: card-entrance 600ms ease-out 100ms forwards; }
-    .letter-group-page li:nth-child(2)  { animation: card-entrance 600ms ease-out 200ms forwards; }
-    .letter-group-page li:nth-child(3)  { animation: card-entrance 600ms ease-out 300ms forwards; }
-    .letter-group-page li:nth-child(4)  { animation: card-entrance 600ms ease-out 400ms forwards; }
-    .letter-group-page li:nth-child(5)  { animation: card-entrance 600ms ease-out 500ms forwards; }
-    .letter-group-page li:nth-child(6)  { animation: card-entrance 600ms ease-out 600ms forwards; }
-    .letter-group-page li:nth-child(7)  { animation: card-entrance 600ms ease-out 700ms forwards; }
-    .letter-group-page li:nth-child(8)  { animation: card-entrance 600ms ease-out 800ms forwards; }
-    .letter-group-page li:nth-child(9)  { animation: card-entrance 600ms ease-out 900ms forwards; }
-    .letter-group-page li:nth-child(10) { animation: card-entrance 600ms ease-out 1000ms forwards; }
-    .letter-group-page li:nth-child(11) { animation: card-entrance 600ms ease-out 1100ms forwards; }
-    .letter-group-page li:nth-child(12) { animation: card-entrance 600ms ease-out 1200ms forwards; }
-    @keyframes card-entrance {
-        from { opacity: 0; transform: translateY(40px) scale(0.95); }
-        to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
+    .letter-group-page li:nth-child(1)  { animation: card-reveal 600ms ease-out 100ms forwards; }
+    .letter-group-page li:nth-child(2)  { animation: card-reveal 600ms ease-out 200ms forwards; }
+    .letter-group-page li:nth-child(3)  { animation: card-reveal 600ms ease-out 300ms forwards; }
+    .letter-group-page li:nth-child(4)  { animation: card-reveal 600ms ease-out 400ms forwards; }
+    .letter-group-page li:nth-child(5)  { animation: card-reveal 600ms ease-out 500ms forwards; }
+    .letter-group-page li:nth-child(6)  { animation: card-reveal 600ms ease-out 600ms forwards; }
+    .letter-group-page li:nth-child(7)  { animation: card-reveal 600ms ease-out 700ms forwards; }
+    .letter-group-page li:nth-child(8)  { animation: card-reveal 600ms ease-out 800ms forwards; }
+    .letter-group-page li:nth-child(9)  { animation: card-reveal 600ms ease-out 900ms forwards; }
+    .letter-group-page li:nth-child(10) { animation: card-reveal 600ms ease-out 1000ms forwards; }
+    .letter-group-page li:nth-child(11) { animation: card-reveal 600ms ease-out 1100ms forwards; }
+    .letter-group-page li:nth-child(12) { animation: card-reveal 600ms ease-out 1200ms forwards; }
 }
 
 /* Letter buttons with images */
