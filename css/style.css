@@ -351,63 +351,104 @@ html, body {
         0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* --- Scroll-Driven Horizontal Slide Animation for Letter Lists --- */
+/* --- Parallax Card Stack Animation for Letter Lists --- */
+/* The page is the scroll timeline source */
 .letter-group-page {
-    /* This is the scroll container - timeline lives here */
     animation-timeline: scroll(root);
+    perspective: 1000px;
 }
 
+/* Stack container - items overlap */
 .letter-group-page ul {
     list-style: none;
     max-width: 300px;
     width: 100%;
     margin: 0 auto;
-    /* Changed to VERTICAL layout */
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
+    gap: 0; /* overlap handled by transform */
+    position: relative;
+    z-index: 1;
 }
 
+/* Each card in the stack */
 .letter-group-page li {
     margin: 0;
     width: 100%;
-    /* Each item animates horizontally based on scroll */
+    /* Stack cards with absolute positioning, centered */
+    position: absolute;
+    top: 50%; /* will be offset by transform */
+    left: 50%;
+    transform-origin: center center;
+    /* Initial state: stacked, scaled down */
+    opacity: 0;
+    will-change: transform, opacity, filter;
+    /* Scroll-driven animation per card */
     animation:
-        letter-slide var(--slide-duration, 1s) linear,
-        letter-fade var(--fade-duration, 1.5s) ease-out;
+        card-stack var(--stack-duration, 1s) linear,
+        card-fade var(--fade-duration, 1.5s) ease-out;
     animation-timeline: scroll(root);
-    animation-range: entry 0% cover 50%;
-    will-change: transform, opacity;
+    /* Each card's scroll range: enters at its index * 15%, exits at (index+1) * 15% */
+    --card-index: 0;
+    animation-range: entry calc(var(--card-index) * 15%) cover calc((var(--card-index) + 1) * 15%);
 }
 
-/* Alternate slide directions: odd items slide left, even slide right */
-.letter-group-page li:nth-child(odd) {
-    --slide-start: -120px;
-    --slide-end: 0px;
+/* Set --card-index for each child (1-based for nth-child) */
+.letter-group-page li:nth-child(1)  { --card-index: 0; --z: 12; }
+.letter-group-page li:nth-child(2)  { --card-index: 1; --z: 11; }
+.letter-group-page li:nth-child(3)  { --card-index: 2; --z: 10; }
+.letter-group-page li:nth-child(4)  { --card-index: 3; --z: 9; }
+.letter-group-page li:nth-child(5)  { --card-index: 4; --z: 8; }
+.letter-group-page li:nth-child(6)  { --card-index: 5; --z: 7; }
+.letter-group-page li:nth-child(7)  { --card-index: 6; --z: 6; }
+.letter-group-page li:nth-child(8)  { --card-index: 7; --z: 5; }
+.letter-group-page li:nth-child(9)  { --card-index: 8; --z: 4; }
+.letter-group-page li:nth-child(10) { --card-index: 9; --z: 3; }
+.letter-group-page li:nth-child(11) { --card-index: 10; --z: 2; }
+.letter-group-page li:nth-child(12) { --card-index: 11; --z: 1; }
+
+/* Z-index for layering (bottom cards behind) */
+.letter-group-page li { z-index: var(--z); }
+
+/* Card active state - incoming: scale 0.7 -> 1, translateY 120px -> 0 */
+/* Card leaving: scale 1 -> 0.7, translateY 0 -> -120px */
+@keyframes card-stack {
+    0% {
+        transform: translateX(-50%) translateY(120px) scale(0.7) rotateX(8deg);
+        filter: blur(4px) brightness(0.6);
+    }
+    50% {
+        transform: translateX(-50%) translateY(0) scale(1) rotateX(0deg);
+        filter: blur(0) brightness(1);
+    }
+    100% {
+        transform: translateX(-50%) translateY(-120px) scale(0.7) rotateX(-8deg);
+        filter: blur(4px) brightness(0.6);
+    }
 }
 
-.letter-group-page li:nth-child(even) {
-    --slide-start: 120px;
-    --slide-end: 0px;
-}
-
-@keyframes letter-slide {
-    from { transform: translateX(var(--slide-start)); }
-    to   { transform: translateX(var(--slide-end)); }
-}
-
-@keyframes letter-fade {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+@keyframes card-fade {
+    0%   { opacity: 0; }
+    20%  { opacity: 1; }
+    80%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 /* Reduced motion fallback */
 @media (prefers-reduced-motion: reduce) {
     .letter-group-page li {
         animation: none !important;
-        opacity: 1;
-        transform: none;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        opacity: 1 !important;
+        filter: none !important;
+        z-index: auto !important;
+    }
+    .letter-group-page ul {
+        gap: 25px !important;
     }
 }
 
@@ -415,29 +456,34 @@ html, body {
 @supports not (animation-timeline: scroll()) {
     .letter-group-page li {
         animation: none;
-        opacity: 1;
-        transform: none;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        opacity: 1 !important;
+        filter: none !important;
+        z-index: auto !important;
     }
-    /* Staggered entrance on load instead */
-    .letter-group-page li:nth-child(1)  { animation: letter-entrance 600ms ease-out 100ms forwards; }
-    .letter-group-page li:nth-child(2)  { animation: letter-entrance 600ms ease-out 200ms forwards; }
-    .letter-group-page li:nth-child(3)  { animation: letter-entrance 600ms ease-out 300ms forwards; }
-    .letter-group-page li:nth-child(4)  { animation: letter-entrance 600ms ease-out 400ms forwards; }
-    .letter-group-page li:nth-child(5)  { animation: letter-entrance 600ms ease-out 500ms forwards; }
-    .letter-group-page li:nth-child(6)  { animation: letter-entrance 600ms ease-out 600ms forwards; }
-    .letter-group-page li:nth-child(7)  { animation: letter-entrance 600ms ease-out 700ms forwards; }
-    .letter-group-page li:nth-child(8)  { animation: letter-entrance 600ms ease-out 800ms forwards; }
-    .letter-group-page li:nth-child(9)  { animation: letter-entrance 600ms ease-out 900ms forwards; }
-    .letter-group-page li:nth-child(10) { animation: letter-entrance 600ms ease-out 1000ms forwards; }
-    .letter-group-page li:nth-child(11) { animation: letter-entrance 600ms ease-out 1100ms forwards; }
-    .letter-group-page li:nth-child(12) { animation: letter-entrance 600ms ease-out 1200ms forwards; }
-
-    @keyframes letter-entrance {
-        from { opacity: 0; transform: translateX(var(--slide-start, -80px)); }
-        to   { opacity: 1; transform: translateX(0); }
+    .letter-group-page ul {
+        gap: 25px !important;
     }
-    .letter-group-page li:nth-child(odd)  { --slide-start: -80px; }
-    .letter-group-page li:nth-child(even) { --slide-start: 80px; }
+    /* Simple staggered entrance */
+    .letter-group-page li:nth-child(1)  { animation: card-entrance 600ms ease-out 100ms forwards; }
+    .letter-group-page li:nth-child(2)  { animation: card-entrance 600ms ease-out 200ms forwards; }
+    .letter-group-page li:nth-child(3)  { animation: card-entrance 600ms ease-out 300ms forwards; }
+    .letter-group-page li:nth-child(4)  { animation: card-entrance 600ms ease-out 400ms forwards; }
+    .letter-group-page li:nth-child(5)  { animation: card-entrance 600ms ease-out 500ms forwards; }
+    .letter-group-page li:nth-child(6)  { animation: card-entrance 600ms ease-out 600ms forwards; }
+    .letter-group-page li:nth-child(7)  { animation: card-entrance 600ms ease-out 700ms forwards; }
+    .letter-group-page li:nth-child(8)  { animation: card-entrance 600ms ease-out 800ms forwards; }
+    .letter-group-page li:nth-child(9)  { animation: card-entrance 600ms ease-out 900ms forwards; }
+    .letter-group-page li:nth-child(10) { animation: card-entrance 600ms ease-out 1000ms forwards; }
+    .letter-group-page li:nth-child(11) { animation: card-entrance 600ms ease-out 1100ms forwards; }
+    .letter-group-page li:nth-child(12) { animation: card-entrance 600ms ease-out 1200ms forwards; }
+    @keyframes card-entrance {
+        from { opacity: 0; transform: translateY(40px) scale(0.95); }
+        to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
 }
 
 /* Letter buttons with images */
@@ -445,18 +491,21 @@ html, body {
     display: block;
     width: 100%;
     max-width: 280px;
-    background: rgba(255,255,255,0.08);
-    border: 2px solid rgba(255,255,255,0.2);
-    border-radius: 12px;
-    padding: 16px 12px 20px;
-    font-size: 1.3rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 12px 8px 16px;
+    font-size: 1.25rem;
     font-weight: 500;
     color: #fff;
     text-decoration: none;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
     overflow: hidden;
+    box-shadow:
+        0 4px 24px rgba(0,0,0,0.4),
+        0 1px 0 rgba(255,255,255,0.05) inset;
 }
 
 .letter-group-page a img {
