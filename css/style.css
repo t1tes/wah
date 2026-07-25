@@ -351,88 +351,28 @@ html, body {
         0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* --- Staggered Scroll Reveal for Letter Lists --- */
+/* Letter buttons with images */
 .letter-group-page {
-    /* scroll root is the timeline source */
-    animation-timeline: scroll(root);
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .letter-group-page ul {
     list-style: none;
-    max-width: 300px;
     width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 28px; /* space between cards */
+    gap: 28px;
 }
 
 .letter-group-page li {
     margin: 0;
     width: 100%;
-    opacity: 0;
-    transform: translateY(60px) scale(0.95);
-    will-change: transform, opacity;
-    /* Scroll-driven staggered reveal */
-    animation: card-reveal 800ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    animation-timeline: scroll(root);
-    /* Each card triggers at a different scroll position */
-    --card-order: 0;
-    animation-range: entry calc(var(--card-order) * 8% + 10%) cover calc(var(--card-order) * 8% + 30%);
 }
 
-/* Set order for each card (0-based) */
-.letter-group-page li:nth-child(1)  { --card-order: 0; }
-.letter-group-page li:nth-child(2)  { --card-order: 1; }
-.letter-group-page li:nth-child(3)  { --card-order: 2; }
-.letter-group-page li:nth-child(4)  { --card-order: 3; }
-.letter-group-page li:nth-child(5)  { --card-order: 4; }
-.letter-group-page li:nth-child(6)  { --card-order: 5; }
-.letter-group-page li:nth-child(7)  { --card-order: 6; }
-.letter-group-page li:nth-child(8)  { --card-order: 7; }
-.letter-group-page li:nth-child(9)  { --card-order: 8; }
-.letter-group-page li:nth-child(10) { --card-order: 9; }
-.letter-group-page li:nth-child(11) { --card-order: 10; }
-.letter-group-page li:nth-child(12) { --card-order: 11; }
-
-@keyframes card-reveal {
-    from { opacity: 0; transform: translateY(60px) scale(0.95); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-/* Reduced motion fallback */
-@media (prefers-reduced-motion: reduce) {
-    .letter-group-page li {
-        animation: none !important;
-        opacity: 1 !important;
-        transform: none !important;
-    }
-}
-
-/* Fallback for browsers without scroll-driven animations */
-@supports not (animation-timeline: scroll()) {
-    .letter-group-page li {
-        animation: none;
-        opacity: 1;
-        transform: none;
-    }
-    /* Simple staggered entrance */
-    .letter-group-page li:nth-child(1)  { animation: card-reveal 600ms ease-out 100ms forwards; }
-    .letter-group-page li:nth-child(2)  { animation: card-reveal 600ms ease-out 200ms forwards; }
-    .letter-group-page li:nth-child(3)  { animation: card-reveal 600ms ease-out 300ms forwards; }
-    .letter-group-page li:nth-child(4)  { animation: card-reveal 600ms ease-out 400ms forwards; }
-    .letter-group-page li:nth-child(5)  { animation: card-reveal 600ms ease-out 500ms forwards; }
-    .letter-group-page li:nth-child(6)  { animation: card-reveal 600ms ease-out 600ms forwards; }
-    .letter-group-page li:nth-child(7)  { animation: card-reveal 600ms ease-out 700ms forwards; }
-    .letter-group-page li:nth-child(8)  { animation: card-reveal 600ms ease-out 800ms forwards; }
-    .letter-group-page li:nth-child(9)  { animation: card-reveal 600ms ease-out 900ms forwards; }
-    .letter-group-page li:nth-child(10) { animation: card-reveal 600ms ease-out 1000ms forwards; }
-    .letter-group-page li:nth-child(11) { animation: card-reveal 600ms ease-out 1100ms forwards; }
-    .letter-group-page li:nth-child(12) { animation: card-reveal 600ms ease-out 1200ms forwards; }
-}
-
-/* Letter buttons with images */
 .letter-group-page a {
     display: block;
     width: 100%;
