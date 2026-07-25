@@ -352,6 +352,11 @@ html, body {
 }
 
 /* --- Scroll-Driven Horizontal Slide Animation for Letter Lists --- */
+.letter-group-page {
+    /* This is the scroll container - timeline lives here */
+    animation-timeline: scroll(root);
+}
+
 .letter-group-page ul {
     list-style: none;
     max-width: 300px;
@@ -362,9 +367,6 @@ html, body {
     flex-direction: column;
     align-items: center;
     gap: 25px;
-    /* Scroll animation container */
-    animation-timeline: scroll();
-    will-change: transform;
 }
 
 .letter-group-page li {
@@ -374,7 +376,7 @@ html, body {
     animation:
         letter-slide var(--slide-duration, 1s) linear,
         letter-fade var(--fade-duration, 1.5s) ease-out;
-    animation-timeline: scroll();
+    animation-timeline: scroll(root);
     animation-range: entry 0% cover 50%;
     will-change: transform, opacity;
 }
@@ -438,6 +440,7 @@ html, body {
     .letter-group-page li:nth-child(even) { --slide-start: 80px; }
 }
 
+/* Letter buttons with images */
 .letter-group-page a {
     display: block;
     width: 100%;
@@ -445,8 +448,8 @@ html, body {
     background: rgba(255,255,255,0.08);
     border: 2px solid rgba(255,255,255,0.2);
     border-radius: 12px;
-    padding: 20px;
-    font-size: 1.4rem;
+    padding: 16px 12px 20px;
+    font-size: 1.3rem;
     font-weight: 500;
     color: #fff;
     text-decoration: none;
@@ -456,12 +459,32 @@ html, body {
     overflow: hidden;
 }
 
+.letter-group-page a img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.letter-group-page a span {
+    display: block;
+    text-align: center;
+}
+
 .letter-group-page a:hover {
     background: rgba(255,255,255,0.15);
     border-color: #fff;
-    color: #ff0;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 20px rgba(255,255,255,0.25);
+    color: #ffb24d;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(255, 178, 77, 0.25);
+}
+
+.letter-group-page a:hover img {
+    transform: scale(1.04);
+    filter: brightness(1.1) saturate(1.15);
 }
 
 .letter-group-page a:active {
