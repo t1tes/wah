@@ -351,33 +351,7 @@ html, body {
         0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* Letter Group Pages Styles - Updated for vertical buttons too */
-.letter-group-page {
-    position: relative;
-    min-height: 100vh;
-    background: #000;
-    color: #fff;
-    font-family: 'JMHTypewriter', monospace;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 80px 20px 20px;
-    box-sizing: border-box;
-    overflow-y: auto;
-}
-
-.letter-group-page h1 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 2.5rem;
-    letter-spacing: 1px;
-    text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.6),
-        0 4px 8px rgba(0, 0, 0, 0.4),
-        0 8px 16px rgba(0, 0, 0, 0.2);
-    color: #fff;
-}
-
+/* --- Scroll-Driven Horizontal Slide Animation for Letter Lists --- */
 .letter-group-page ul {
     list-style: none;
     max-width: 300px;
@@ -388,11 +362,80 @@ html, body {
     flex-direction: column;
     align-items: center;
     gap: 25px;
+    /* Scroll animation container */
+    animation-timeline: scroll();
+    will-change: transform;
 }
 
 .letter-group-page li {
     margin: 0;
     width: 100%;
+    /* Each item animates horizontally based on scroll */
+    animation:
+        letter-slide var(--slide-duration, 1s) linear,
+        letter-fade var(--fade-duration, 1.5s) ease-out;
+    animation-timeline: scroll();
+    animation-range: entry 0% cover 50%;
+    will-change: transform, opacity;
+}
+
+/* Alternate slide directions: odd items slide left, even slide right */
+.letter-group-page li:nth-child(odd) {
+    --slide-start: -120px;
+    --slide-end: 0px;
+}
+
+.letter-group-page li:nth-child(even) {
+    --slide-start: 120px;
+    --slide-end: 0px;
+}
+
+@keyframes letter-slide {
+    from { transform: translateX(var(--slide-start)); }
+    to   { transform: translateX(var(--slide-end)); }
+}
+
+@keyframes letter-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Reduced motion fallback */
+@media (prefers-reduced-motion: reduce) {
+    .letter-group-page li {
+        animation: none !important;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Fallback for browsers without scroll-driven animations */
+@supports not (animation-timeline: scroll()) {
+    .letter-group-page li {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+    /* Staggered entrance on load instead */
+    .letter-group-page li:nth-child(1)  { animation: letter-entrance 600ms ease-out 100ms forwards; }
+    .letter-group-page li:nth-child(2)  { animation: letter-entrance 600ms ease-out 200ms forwards; }
+    .letter-group-page li:nth-child(3)  { animation: letter-entrance 600ms ease-out 300ms forwards; }
+    .letter-group-page li:nth-child(4)  { animation: letter-entrance 600ms ease-out 400ms forwards; }
+    .letter-group-page li:nth-child(5)  { animation: letter-entrance 600ms ease-out 500ms forwards; }
+    .letter-group-page li:nth-child(6)  { animation: letter-entrance 600ms ease-out 600ms forwards; }
+    .letter-group-page li:nth-child(7)  { animation: letter-entrance 600ms ease-out 700ms forwards; }
+    .letter-group-page li:nth-child(8)  { animation: letter-entrance 600ms ease-out 800ms forwards; }
+    .letter-group-page li:nth-child(9)  { animation: letter-entrance 600ms ease-out 900ms forwards; }
+    .letter-group-page li:nth-child(10) { animation: letter-entrance 600ms ease-out 1000ms forwards; }
+    .letter-group-page li:nth-child(11) { animation: letter-entrance 600ms ease-out 1100ms forwards; }
+    .letter-group-page li:nth-child(12) { animation: letter-entrance 600ms ease-out 1200ms forwards; }
+
+    @keyframes letter-entrance {
+        from { opacity: 0; transform: translateX(var(--slide-start, -80px)); }
+        to   { opacity: 1; transform: translateX(0); }
+    }
+    .letter-group-page li:nth-child(odd)  { --slide-start: -80px; }
+    .letter-group-page li:nth-child(even) { --slide-start: 80px; }
 }
 
 .letter-group-page a {
