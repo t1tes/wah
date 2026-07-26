@@ -98,6 +98,28 @@
             font-weight: bold;
         }
 
+        /* Confetti reverse animation */
+        .confetti-container confetti-reverse .confetti {
+            animation: confetti-rise linear forwards !important;
+        }
+
+        @keyframes confetti-rise {
+            0% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 0;
+            }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             .letter-19 {
                 animation: none;
@@ -126,7 +148,7 @@
 
         <!-- More button -->
         <div class="more-container">
-            <button class="more-btn" id="moreBtn" aria-expanded="false" aria-controls="letter19">More</button>
+            <button class="more-btn" id="moreBtn" aria-expanded="false" aria-controls="letter19">LETTER 19: im sorry</button>
         </div>
 
         <!-- Hidden 19th letter -->
@@ -167,14 +189,60 @@
         // More button toggle for Letter 19
         const moreBtn = document.getElementById('moreBtn');
         const letter19 = document.getElementById('letter19');
+        const confettiPieces = [];
 
         moreBtn.addEventListener('click', () => {
             const isExpanded = moreBtn.getAttribute('aria-expanded') === 'true';
             moreBtn.setAttribute('aria-expanded', !isExpanded);
             letter19.hidden = isExpanded;
-            moreBtn.textContent = isExpanded ? 'More' : 'Less';
+
+            if (!isExpanded) {
+                // Opening: reverse confetti upward + change button text
+                moreBtn.textContent = 'we never reached your birthday';
+                reverseConfetti();
+            } else {
+                // Closing: restore confetti downward + restore button text
+                moreBtn.textContent = 'LETTER 19: im sorry';
+                resetConfetti();
+            }
         });
+
+        function reverseConfetti() {
+            const confettiEl = document.querySelectorAll('.confetti');
+            confettiEl.forEach((el, i) => {
+                // Store original animation
+                const origDur = el.style.animationDuration;
+                const origDelay = el.style.animationDelay;
+                // Reverse: animate upward
+                el.style.animation = 'none';
+                el.offsetHeight; // force reflow
+                el.style.animation = `confetti-rise ${origDur} ${origDelay} linear forwards`;
+            });
+        }
+
+        function resetConfetti() {
+            const confettiEl = document.querySelectorAll('.confetti');
+            confettiEl.forEach((el, i) => {
+                const origDur = el.style.animationDuration;
+                const origDelay = el.style.animationDelay;
+                el.style.animation = 'none';
+                el.offsetHeight;
+                el.style.animation = `confetti-fall ${origDur} ${origDelay} linear infinite`;
+            });
+        }
     </script>
+    <style>
+        @keyframes confetti-rise {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-120vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
     <script src="scripts/page-transitions.js"></script>
 </body>
 </html>
