@@ -341,9 +341,13 @@
                 moreBtn.setAttribute('aria-expanded', !isExpanded);
                 letter19.hidden = isExpanded;
 
+                const ambientContainer = document.querySelector('.confetti-container');
+
                 if (!isExpanded) {
                     moreBtn.textContent = 'Less';
-                    // Show confetti reverse animation
+                    // Hide ambient confetti (falling from top)
+                    if (ambientContainer) ambientContainer.style.display = 'none';
+                    // Show reverse confetti (rising from bottom)
                     reverseContainer.style.display = 'block';
                     // Remove after animation
                     setTimeout(() => {
@@ -351,6 +355,10 @@
                     }, 3000);
                 } else {
                     moreBtn.textContent = 'More';
+                    // Show ambient confetti again
+                    if (ambientContainer) ambientContainer.style.display = 'block';
+                    // Hide reverse confetti
+                    reverseContainer.style.display = 'none';
                 }
             });
         })();
