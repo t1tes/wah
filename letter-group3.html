@@ -196,11 +196,11 @@
             letter19.hidden = isExpanded;
 
             if (!isExpanded) {
-                // Opening: confetti rises from BELOW screen + change button text
-                moreBtn.textContent = 'we never reached your birthday';
+                // Opening: confetti rises from BELOW screen
+                moreBtn.textContent = 'Less';
                 reverseConfetti();
             } else {
-                // Closing: restore confetti downward + restore button text
+                // Closing: restore confetti downward
                 moreBtn.textContent = 'More';
                 resetConfetti();
             }
