@@ -41,25 +41,13 @@
             animation: firework-rise var(--duration) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
 
-        .firework::before,
-        .firework::after {
-            content: '';
+        .firework-particle {
             position: absolute;
             width: 4px;
             height: 4px;
             border-radius: 50%;
             background: inherit;
-        }
-
-        .firework::before {
-            --angle: 45deg;
-            --dist: 12px;
-            animation: firework-burst var(--burst-delay) ease-out forwards;
-        }
-
-        .firework::after {
-            --angle: -45deg;
-            --dist: 12px;
+            opacity: 0;
             animation: firework-burst var(--burst-delay) ease-out forwards;
         }
 
@@ -80,7 +68,59 @@
                 opacity: 1;
             }
             100% {
-                transform: translate(var(--dist), calc(var(--dist) * -1)) scale(0);
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* --- Confetti Container (for reverse animation) --- */
+        .confetti-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2;
+            overflow: hidden;
+            display: none;
+        }
+
+        .confetti-container.confetti-reverse .confetti {
+            animation: confetti-rise linear forwards !important;
+        }
+
+        .confetti {
+            position: absolute;
+            top: -10px;
+            width: 10px;
+            height: 10px;
+            opacity: 0.8;
+            animation: confetti-fall linear infinite;
+            border-radius: 2px;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes confetti-rise {
+            0% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(0deg);
                 opacity: 0;
             }
         }
@@ -135,11 +175,6 @@
                 transform: translateY(0);
             }
         }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
 
         .letter-19-text {
             font-family: 'JMHTypewriter', monospace;
@@ -186,28 +221,6 @@
             font-weight: 700;
         }
 
-        /* Confetti reverse animation */
-        .confetti-container confetti-reverse .confetti {
-            animation: confetti-rise linear forwards !important;
-        }
-
-        @keyframes confetti-rise {
-            0% {
-                transform: translateY(110vh) rotate(720deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-10vh) rotate(0deg);
-                opacity: 0;
-            }
-        }
-
         @media (prefers-reduced-motion: reduce) {
             .letter-19 {
                 animation: none;
@@ -218,6 +231,9 @@
 <body class="letter-group-page-body">
     <!-- Fireworks Container -->
     <div class="fireworks-container" aria-hidden="true"></div>
+
+    <!-- Confetti Container (for reverse animation on More button) -->
+    <div class="confetti-container" aria-hidden="true"></div>
 
     <video class="letter-group-bg-video" autoplay muted loop playsinline poster="media/letter13.svg">
         <source src="media/letters-bg.mp4" type="video/mp4">
@@ -253,15 +269,47 @@
         function createFirework() {
             const firework = document.createElement('div');
             firework.className = 'firework';
-            firework.style.left = Math.random() * 100 + '%';
+            const left = Math.random() * 100 + '%';
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const duration = Math.random() * 3 + 4;
+            const burstDelay = Math.random() * 1 + 0.5;
+            const burstTime = duration * 0.75; // Burst at 75% of rise
+
+            firework.style.left = left;
             firework.style.bottom = '-20px';
-            firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            firework.style.setProperty('--duration', (Math.random() * 3 + 4) + 's');
-            firework.style.setProperty('--burst-delay', (Math.random() * 1 + 0.5) + 's');
+            firework.style.backgroundColor = color;
+            firework.style.setProperty('--duration', duration + 's');
+            firework.style.setProperty('--burst-delay', burstDelay + 's');
             fireworksContainer.appendChild(firework);
 
-            // Remove after animation
+            // Create burst particles when firework reaches peak
+            setTimeout(() => {
+                createBurst(left, color);
+                firework.remove(); // Remove the rocket
+            }, burstTime * 1000);
+
+            // Cleanup fallback
             setTimeout(() => firework.remove(), 8000);
+        }
+
+        function createBurst(left, color) {
+            const particleCount = 12;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework-particle';
+                particle.style.left = left;
+                particle.style.bottom = '100vh'; // Start from top where rocket exploded
+                particle.style.backgroundColor = color;
+                const angle = (i / particleCount) * Math.PI * 2;
+                const distance = Math.random() * 60 + 40; // 40-100px
+                const tx = Math.cos(angle) * distance + 'px';
+                const ty = Math.sin(angle) * distance + 'px';
+                particle.style.setProperty('--tx', tx);
+                particle.style.setProperty('--ty', ty);
+                particle.style.setProperty('--burst-delay', (Math.random() * 0.5 + 0.8) + 's');
+                fireworksContainer.appendChild(particle);
+                setTimeout(() => particle.remove(), 3000);
+            }
         }
 
         // Spawn fireworks periodically
@@ -281,21 +329,71 @@
             fireworksContainer.style.display = 'none';
         }
 
-        // More button toggle for Letter 19
-        const moreBtn = document.getElementById('moreBtn');
-        const letter19 = document.getElementById('letter19');
+        // Generate confetti for reverse animation
+        (function() {
+            const confettiContainer = document.querySelector('.confetti-container');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        moreBtn.addEventListener('click', () => {
-            const isExpanded = moreBtn.getAttribute('aria-expanded') === 'true';
-            moreBtn.setAttribute('aria-expanded', !isExpanded);
-            letter19.hidden = isExpanded;
+            if (prefersReducedMotion || !confettiContainer) return;
 
-            if (!isExpanded) {
-                moreBtn.textContent = 'Less';
-            } else {
-                moreBtn.textContent = 'More';
+            const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9a', '#a29bfe', '#fd79a8', '#00cec9', '#fdcb6e', '#e17055', '#74b9ff', '#fab1a0', '#55efc4', '#ffeaa7', '#ff7675', '#a29bfe', '#ffffff'];
+            const confettiCount = 30;
+
+            function createConfetti() {
+                const fragment = document.createDocumentFragment();
+
+                for (let i = 0; i < confettiCount; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+
+                    const size = Math.random() * 6 + 6;
+                    const left = Math.random() * 100;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const borderRadius = Math.random() > 0.6 ? '50%' : '2px';
+
+                    confetti.style.cssText = `
+                        left: ${left}%;
+                        width: ${size}px;
+                        height: ${size}px;
+                        background-color: ${color};
+                        border-radius: ${borderRadius};
+                        animation-duration: ${Math.random() * 8 + 10}s;
+                        animation-delay: ${Math.random() * 6}s;
+                    `;
+
+                    fragment.appendChild(confetti);
+                }
+
+                confettiContainer.appendChild(fragment);
             }
-        });
+
+            // Initialize confetti (hidden initially)
+            createConfetti();
+
+            // More button toggle for Letter 19
+            const moreBtn = document.getElementById('moreBtn');
+            const letter19 = document.getElementById('letter19');
+
+            moreBtn.addEventListener('click', () => {
+                const isExpanded = moreBtn.getAttribute('aria-expanded') === 'true';
+                moreBtn.setAttribute('aria-expanded', !isExpanded);
+                letter19.hidden = isExpanded;
+
+                if (!isExpanded) {
+                    moreBtn.textContent = 'Less';
+                    // Show confetti reverse animation
+                    confettiContainer.style.display = 'block';
+                    confettiContainer.classList.add('confetti-reverse');
+                    // Remove reverse class after animation
+                    setTimeout(() => {
+                        confettiContainer.classList.remove('confetti-reverse');
+                        confettiContainer.style.display = 'none';
+                    }, 3000);
+                } else {
+                    moreBtn.textContent = 'More';
+                }
+            });
+        })();
     </script>
     <script src="scripts/page-transitions.js"></script>
 </body>

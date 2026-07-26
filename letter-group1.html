@@ -41,25 +41,13 @@
             animation: firework-rise var(--duration) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
 
-        .firework::before,
-        .firework::after {
-            content: '';
+        .firework-particle {
             position: absolute;
             width: 4px;
             height: 4px;
             border-radius: 50%;
             background: inherit;
-        }
-
-        .firework::before {
-            --angle: 45deg;
-            --dist: 12px;
-            animation: firework-burst var(--burst-delay) ease-out forwards;
-        }
-
-        .firework::after {
-            --angle: -45deg;
-            --dist: 12px;
+            opacity: 0;
             animation: firework-burst var(--burst-delay) ease-out forwards;
         }
 
@@ -80,7 +68,7 @@
                 opacity: 1;
             }
             100% {
-                transform: translate(var(--dist), calc(var(--dist) * -1)) scale(0);
+                transform: translate(var(--tx), var(--ty)) scale(0);
                 opacity: 0;
             }
         }
@@ -113,15 +101,47 @@
         function createFirework() {
             const firework = document.createElement('div');
             firework.className = 'firework';
-            firework.style.left = Math.random() * 100 + '%';
+            const left = Math.random() * 100 + '%';
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const duration = Math.random() * 3 + 4;
+            const burstDelay = Math.random() * 1 + 0.5;
+            const burstTime = duration * 0.75; // Burst at 75% of rise
+
+            firework.style.left = left;
             firework.style.bottom = '-20px';
-            firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            firework.style.setProperty('--duration', (Math.random() * 3 + 4) + 's');
-            firework.style.setProperty('--burst-delay', (Math.random() * 1 + 0.5) + 's');
+            firework.style.backgroundColor = color;
+            firework.style.setProperty('--duration', duration + 's');
+            firework.style.setProperty('--burst-delay', burstDelay + 's');
             fireworksContainer.appendChild(firework);
 
-            // Remove after animation
+            // Create burst particles when firework reaches peak
+            setTimeout(() => {
+                createBurst(left, color);
+                firework.remove(); // Remove the rocket
+            }, burstTime * 1000);
+
+            // Cleanup fallback
             setTimeout(() => firework.remove(), 8000);
+        }
+
+        function createBurst(left, color) {
+            const particleCount = 12;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework-particle';
+                particle.style.left = left;
+                particle.style.bottom = '100vh'; // Start from top where rocket exploded
+                particle.style.backgroundColor = color;
+                const angle = (i / particleCount) * Math.PI * 2;
+                const distance = Math.random() * 60 + 40; // 40-100px
+                const tx = Math.cos(angle) * distance + 'px';
+                const ty = Math.sin(angle) * distance + 'px';
+                particle.style.setProperty('--tx', tx);
+                particle.style.setProperty('--ty', ty);
+                particle.style.setProperty('--burst-delay', (Math.random() * 0.5 + 0.8) + 's');
+                fireworksContainer.appendChild(particle);
+                setTimeout(() => particle.remove(), 3000);
+            }
         }
 
         // Spawn fireworks periodically
