@@ -201,13 +201,12 @@
 
         /* --- Focus Visible (keyboard) --- */
         .button-wrapper:focus-visible {
-            outline: none;
+            outline: 2px solid var(--color-white);
+            outline-offset: 4px;
         }
 
         .button-wrapper:focus-visible img {
-            box-shadow:
-                0 0 0 3px var(--color-dark),
-                0 0 0 5px var(--color-white);
+            box-shadow: none;
         }
 
         /* --- Number Label (beneath button) --- */

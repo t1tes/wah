@@ -423,9 +423,9 @@ body.letter-group-page-body {
 .letter-group-page a:hover {
     background: rgba(255,255,255,0.15);
     border-color: #fff;
-    color: #ffb24d;
+    color: #fff;
     transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(255, 178, 77, 0.25);
+    box-shadow: none;
 }
 
 .letter-group-page a:hover img {
