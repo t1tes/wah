@@ -22,11 +22,73 @@
             opacity: 0.6;
             filter: brightness(0.6);
         }
+
+        /* --- Fireworks Container --- */
+        .fireworks-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .firework {
+            position: absolute;
+            bottom: 0;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: firework-rise var(--duration) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .firework::before,
+        .firework::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: inherit;
+        }
+
+        .firework::before {
+            --angle: 45deg;
+            --dist: 12px;
+            animation: firework-burst var(--burst-delay) ease-out forwards;
+        }
+
+        .firework::after {
+            --angle: -45deg;
+            --dist: 12px;
+            animation: firework-burst var(--burst-delay) ease-out forwards;
+        }
+
+        @keyframes firework-rise {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        @keyframes firework-burst {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--dist), calc(var(--dist) * -1)) scale(0);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body class="letter-group-page-body">
-    <!-- Confetti Container -->
-    <div class="confetti-container" aria-hidden="true"></div>
+    <!-- Fireworks Container -->
+    <div class="fireworks-container" aria-hidden="true"></div>
 
     <video class="letter-group-bg-video" autoplay muted loop playsinline poster="media/letter1.svg">
         <source src="media/letters-bg.mp4" type="video/mp4">
@@ -44,32 +106,39 @@
         </ul>
     </div>
     <script>
-        // Generate dynamic confetti
-        const confettiContainer = document.querySelector('.confetti-container');
+        // Generate dynamic fireworks
+        const fireworksContainer = document.querySelector('.fireworks-container');
         const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9a', '#a29bfe', '#fd79a8', '#00cec9', '#fdcb6e', '#e17055', '#74b9ff', '#fab1a0', '#55efc4', '#ffeaa7', '#ff7675', '#a29bfe'];
 
-        function createConfetti() {
-            for (let i = 0; i < 30; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.width = Math.random() * 8 + 6 + 'px';
-                confetti.style.height = Math.random() * 8 + 6 + 'px';
-                confetti.style.animationDuration = Math.random() * 4 + 6 + 's';
-                confetti.style.animationDelay = Math.random() * 5 + 's';
-                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-                confettiContainer.appendChild(confetti);
-            }
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = Math.random() * 100 + '%';
+            firework.style.bottom = '-20px';
+            firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            firework.style.setProperty('--duration', (Math.random() * 3 + 4) + 's');
+            firework.style.setProperty('--burst-delay', (Math.random() * 1 + 0.5) + 's');
+            fireworksContainer.appendChild(firework);
+
+            // Remove after animation
+            setTimeout(() => firework.remove(), 8000);
         }
 
-        // Initialize confetti
-        createConfetti();
+        // Spawn fireworks periodically
+        function spawnFireworks() {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            createFirework();
+            // Random interval between 800-2000ms
+            setTimeout(spawnFireworks, Math.random() * 1200 + 800);
+        }
+
+        // Initialize fireworks
+        spawnFireworks();
 
         // Respect reduced motion preference
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         if (prefersReducedMotion.matches) {
-            confettiContainer.style.display = 'none';
+            fireworksContainer.style.display = 'none';
         }
     </script>
     <script src="scripts/page-transitions.js"></script>
