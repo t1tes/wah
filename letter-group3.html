@@ -93,14 +93,24 @@
             transition: opacity 0.3s ease;
             display: block;
             text-align: center;
+            /* Override .letter-group-page a card styles */
+            background: none !important;
+            border: none !important;
+            border-radius: 0 !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+            max-width: none !important;
+            width: auto !important;
+            font-weight: 700;
         }
 
         .letter-19-title:hover {
             opacity: 0.7;
+            transform: none !important;
         }
 
         .letter-19-title strong {
-            font-weight: bold;
+            font-weight: 700;
         }
 
         /* Confetti reverse animation */
@@ -159,7 +169,7 @@
         <!-- Hidden 19th letter -->
         <div class="letter-19" id="letter19" hidden>
             <p class="letter-19-text">we never reached your birthday</p>
-            <a href="letters/letter3-7.html" class="letter-19-title"><strong>LETTER 19: to jayme</strong></a>
+            <a href="letters/letter3-7.html" class="letter-19-title"><strong>LETTER 19: im sorry</strong></a>
         </div>
     </div>
     <script>
