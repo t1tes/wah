@@ -27,6 +27,7 @@
         .more-container {
             margin-top: 180px;
             text-align: center;
+            width: 100%;
         }
 
         .more-btn {
@@ -39,16 +40,16 @@
             text-transform: uppercase;
             padding: 8px 0;
             cursor: pointer;
-            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
         }
 
         .more-btn:hover {
-            color: #fff;
+            color: rgba(255,255,255,0.5);
         }
 
         .more-btn:focus {
-            outline: 2px solid #fff;
-            outline-offset: 4px;
+            outline: none;
         }
 
         /* Letter 19 reveal */
@@ -56,6 +57,7 @@
             margin-top: 160px;
             padding: 40px 20px;
             text-align: center;
+            width: 100%;
             animation: letter19-reveal 0.6s ease-out forwards;
         }
 
@@ -77,6 +79,8 @@
             margin-bottom: 16px;
             line-height: 1.6;
             white-space: nowrap;
+            display: block;
+            text-align: center;
         }
 
         .letter-19-title {
@@ -87,6 +91,8 @@
             white-space: nowrap;
             cursor: pointer;
             transition: opacity 0.3s ease;
+            display: block;
+            text-align: center;
         }
 
         .letter-19-title:hover {
