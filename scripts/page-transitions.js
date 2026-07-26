@@ -19,6 +19,8 @@
         // Common elements that exist across pages
         const elements = [
             { selector: 'video[autoplay]', name: 'bg-video' },
+            { selector: '.menu-bg-video', name: 'menu-bg-video' },
+            { selector: '.letter-group-bg-video', name: 'letter-group-bg-video' },
             { selector: '.home-page .content', name: 'home-title' },
             { selector: '.menu-page .intro-text', name: 'menu-intro' },
             { selector: '.menu-page .button-container', name: 'menu-buttons' },
