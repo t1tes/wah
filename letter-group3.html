@@ -25,27 +25,25 @@
 
         /* More button */
         .more-container {
-            margin-top: 140px;
+            margin-top: 180px;
             text-align: center;
         }
 
         .more-btn {
             background: transparent;
-            border: 1px solid rgba(255,255,255,0.3);
-            color: #fff;
+            border: none;
+            color: rgba(255,255,255,0.5);
             font-family: 'JMHTypewriter', monospace;
             font-size: 1rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            padding: 14px 40px;
-            border-radius: 100px;
+            padding: 8px 0;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .more-btn:hover {
-            border-color: #fff;
-            background: rgba(255,255,255,0.1);
+            color: #fff;
         }
 
         .more-btn:focus {
@@ -55,7 +53,7 @@
 
         /* Letter 19 reveal */
         .letter-19 {
-            margin-top: 120px;
+            margin-top: 160px;
             padding: 40px 20px;
             text-align: center;
             border-top: 1px solid rgba(255,255,255,0.1);
@@ -88,6 +86,12 @@
             color: #fff;
             line-height: 1.4;
             white-space: nowrap;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .letter-19-title:hover {
+            opacity: 0.7;
         }
 
         .letter-19-title strong {
@@ -128,7 +132,7 @@
         <!-- Hidden 19th letter -->
         <div class="letter-19" id="letter19" hidden>
             <p class="letter-19-text">we never reached your birthday</p>
-            <p class="letter-19-title"><strong>LETTER 19: im sorry</strong></p>
+            <a href="letters/letter3-7.html" class="letter-19-title"><strong>LETTER 19: im sorry</strong></a>
         </div>
     </div>
     <script>
