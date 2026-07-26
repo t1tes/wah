@@ -22,6 +22,81 @@
             opacity: 0.6;
             filter: brightness(0.6);
         }
+
+        /* More button */
+        .more-container {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .more-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            font-family: 'JMHTypewriter', monospace;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 14px 40px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .more-btn:hover {
+            border-color: #fff;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .more-btn:focus {
+            outline: 2px solid #fff;
+            outline-offset: 4px;
+        }
+
+        /* Letter 19 reveal */
+        .letter-19 {
+            margin-top: 80px;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            animation: letter19-reveal 0.6s ease-out forwards;
+        }
+
+        @keyframes letter19-reveal {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .letter-19-text {
+            font-family: 'JMHTypewriter', monospace;
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .letter-19-title {
+            font-family: 'JMHTypewriter', monospace;
+            font-size: 1.3rem;
+            color: #fff;
+            line-height: 1.4;
+        }
+
+        .letter-19-title strong {
+            font-weight: bold;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .letter-19 {
+                animation: none;
+            }
+        }
     </style>
 </head>
 <body class="letter-group-page-body">
@@ -42,6 +117,17 @@
             <li><a href="letters/letter3-5.html"><img src="media/letter17.svg" alt="Letter 17" loading="lazy"></a></li>
             <li><a href="letters/letter3-6.html"><img src="media/letter18.svg" alt="Letter 18" loading="lazy"></a></li>
         </ul>
+
+        <!-- More button -->
+        <div class="more-container">
+            <button class="more-btn" id="moreBtn" aria-expanded="false" aria-controls="letter19">More</button>
+        </div>
+
+        <!-- Hidden 19th letter -->
+        <div class="letter-19" id="letter19" hidden>
+            <p class="letter-19-text">we never reached your birthday</p>
+            <p class="letter-19-title"><strong>LETTER 19: im sorry</strong></p>
+        </div>
     </div>
     <script>
         // Generate dynamic confetti
@@ -71,6 +157,17 @@
         if (prefersReducedMotion.matches) {
             confettiContainer.style.display = 'none';
         }
+
+        // More button toggle for Letter 19
+        const moreBtn = document.getElementById('moreBtn');
+        const letter19 = document.getElementById('letter19');
+
+        moreBtn.addEventListener('click', () => {
+            const isExpanded = moreBtn.getAttribute('aria-expanded') === 'true';
+            moreBtn.setAttribute('aria-expanded', !isExpanded);
+            letter19.hidden = isExpanded;
+            moreBtn.textContent = isExpanded ? 'More' : 'Less';
+        });
     </script>
     <script src="scripts/page-transitions.js"></script>
 </body>
