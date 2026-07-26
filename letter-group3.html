@@ -148,7 +148,7 @@
 
         <!-- More button -->
         <div class="more-container">
-            <button class="more-btn" id="moreBtn" aria-expanded="false" aria-controls="letter19">LETTER 19: im sorry</button>
+            <button class="more-btn" id="moreBtn" aria-expanded="false" aria-controls="letter19">More</button>
         </div>
 
         <!-- Hidden 19th letter -->
@@ -189,7 +189,6 @@
         // More button toggle for Letter 19
         const moreBtn = document.getElementById('moreBtn');
         const letter19 = document.getElementById('letter19');
-        const confettiPieces = [];
 
         moreBtn.addEventListener('click', () => {
             const isExpanded = moreBtn.getAttribute('aria-expanded') === 'true';
@@ -197,23 +196,21 @@
             letter19.hidden = isExpanded;
 
             if (!isExpanded) {
-                // Opening: reverse confetti upward + change button text
+                // Opening: confetti rises from BELOW screen + change button text
                 moreBtn.textContent = 'we never reached your birthday';
                 reverseConfetti();
             } else {
                 // Closing: restore confetti downward + restore button text
-                moreBtn.textContent = 'LETTER 19: im sorry';
+                moreBtn.textContent = 'More';
                 resetConfetti();
             }
         });
 
         function reverseConfetti() {
             const confettiEl = document.querySelectorAll('.confetti');
-            confettiEl.forEach((el, i) => {
-                // Store original animation
+            confettiEl.forEach((el) => {
                 const origDur = el.style.animationDuration;
                 const origDelay = el.style.animationDelay;
-                // Reverse: animate upward
                 el.style.animation = 'none';
                 el.offsetHeight; // force reflow
                 el.style.animation = `confetti-rise ${origDur} ${origDelay} linear forwards`;
@@ -222,7 +219,7 @@
 
         function resetConfetti() {
             const confettiEl = document.querySelectorAll('.confetti');
-            confettiEl.forEach((el, i) => {
+            confettiEl.forEach((el) => {
                 const origDur = el.style.animationDuration;
                 const origDelay = el.style.animationDelay;
                 el.style.animation = 'none';
@@ -234,11 +231,11 @@
     <style>
         @keyframes confetti-rise {
             0% {
-                transform: translateY(0) rotate(0deg);
+                transform: translateY(110vh) rotate(0deg);
                 opacity: 0.8;
             }
             100% {
-                transform: translateY(-120vh) rotate(720deg);
+                transform: translateY(-10vh) rotate(720deg);
                 opacity: 0;
             }
         }
