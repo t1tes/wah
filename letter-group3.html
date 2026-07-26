@@ -32,7 +32,7 @@
             overflow: hidden;
         }
 
-        .confetti {
+        .confetti-container .confetti {
             position: absolute;
             top: -10px;
             width: 10px;
@@ -63,23 +63,23 @@
             display: none;
         }
 
-        .confetti-reverse-container .confetti-reverse {
-            animation: confetti-rise linear forwards !important;
+        .confetti-reverse-container .confetti {
+            position: absolute;
+            bottom: -10px;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            animation: confetti-rise linear forwards;
+            border-radius: 2px;
         }
 
         @keyframes confetti-rise {
             0% {
-                transform: translateY(110vh) rotate(720deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
+                transform: translateY(0) rotate(720deg);
                 opacity: 0.8;
             }
             100% {
-                transform: translateY(-10vh) rotate(0deg);
+                transform: translateY(-120vh) rotate(0deg);
                 opacity: 0;
             }
         }
@@ -307,7 +307,7 @@
 
                 for (let i = 0; i < confettiCount; i++) {
                     const confetti = document.createElement('div');
-                    confetti.className = 'confetti confetti-reverse';
+                    confetti.className = 'confetti';
 
                     const size = Math.random() * 6 + 6;
                     const left = Math.random() * 100;
