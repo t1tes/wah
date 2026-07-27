@@ -68,18 +68,18 @@
             bottom: -10px;
             width: 10px;
             height: 10px;
-            opacity: 0;
-            animation: confetti-rise linear forwards;
+            opacity: 0.8;
+            animation: confetti-rise linear infinite;
             border-radius: 2px;
         }
 
         @keyframes confetti-rise {
             0% {
-                transform: translateY(0) rotate(720deg);
+                transform: translateY(0) rotate(0deg);
                 opacity: 0.8;
             }
             100% {
-                transform: translateY(-120vh) rotate(0deg);
+                transform: translateY(-120vh) rotate(720deg);
                 opacity: 0;
             }
         }
@@ -311,8 +311,12 @@
 
                     const size = Math.random() * 6 + 6;
                     const left = Math.random() * 100;
+                    const duration = Math.random() * 4 + 3;
+                    const delay = Math.random() * 3;
                     const color = colors[Math.floor(Math.random() * colors.length)];
                     const borderRadius = Math.random() > 0.6 ? '50%' : '2px';
+                    const rotation = Math.random() * 360;
+                    const rotationSpeed = (Math.random() - 0.5) * 720;
 
                     confetti.style.cssText = `
                         left: ${left}%;
@@ -320,14 +324,29 @@
                         height: ${size}px;
                         background-color: ${color};
                         border-radius: ${borderRadius};
-                        animation-duration: ${Math.random() * 3 + 2}s;
+                        animation-duration: ${duration}s;
+                        animation-delay: ${delay}s;
+                        transform: rotate(${rotation}deg);
                     `;
+
+                    confetti.style.setProperty('--rotation-end', `${rotation + rotationSpeed}deg`);
 
                     fragment.appendChild(confetti);
                 }
 
                 reverseContainer.appendChild(fragment);
             }
+
+            // Add rotation keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes confetti-rise {
+                    0% { transform: translateY(0) rotate(var(--rotation-start, 0deg)); opacity: 0.8; }
+                    100% { transform: translateY(-120vh) rotate(var(--rotation-end, 720deg)); opacity: 0; }
+                }
+                .confetti { --rotation-start: 0deg; }
+            `;
+            document.head.appendChild(style);
 
             // Initialize confetti
             createConfetti();
