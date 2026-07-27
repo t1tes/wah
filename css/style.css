@@ -403,53 +403,38 @@ body.letter-group-page-body {
     display: block;
     width: 100%;
     max-width: 280px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 16px;
-    padding: 12px 8px 16px;
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: #fff;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0 auto;
     text-decoration: none;
-    text-align: center;
-    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-    position: relative;
-    overflow: hidden;
-    box-shadow:
-        0 4px 24px rgba(0,0,0,0.4),
-        0 1px 0 rgba(255,255,255,0.05) inset;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .letter-group-page a img {
     width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 12px;
+    height: auto;
+    max-width: 280px;
+    object-fit: contain;
+    border-radius: 0;
+    margin: 0;
     display: block;
-    transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.letter-group-page a span {
-    display: block;
-    text-align: center;
+    transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
 }
 
 .letter-group-page a:hover {
-    background: rgba(255,255,255,0.15);
-    border-color: #fff;
-    color: #fff;
-    transform: translateY(-4px);
-    box-shadow: none;
+    transform: scale(1.02);
 }
 
 .letter-group-page a:hover img {
-    transform: scale(1.04);
+    transform: scale(1.02);
     filter: brightness(1.1) saturate(1.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 .letter-group-page a:active {
-    transform: translateY(0);
+    transform: scale(0.98);
 }
 
 /* Individual Letter Page Styles */
