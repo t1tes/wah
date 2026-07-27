@@ -379,6 +379,21 @@ body.letter-group-page-body {
     gap: 28px;
 }
 
+.letter-group-page h1 {
+    font-family: 'JMHTypewriter', monospace;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 60px;
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.6),
+        0 4px 8px rgba(0, 0, 0, 0.4),
+        0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 .letter-group-page li {
     margin: 0;
     width: 100%;
