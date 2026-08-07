@@ -8,7 +8,7 @@
 
 @font-face {
     font-family: 'JMHTypewriter';
-    src: url('../fonts/JMH Typewriter.ttf')
+    src: url('../fonts/JMH Typewriter.ttf') format('truetype'),
          url('../fonts/JMH Typewriter.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
@@ -186,7 +186,8 @@ html, body {
     text-shadow:
         0 2px 4px rgba(0, 0, 0, 0.5),
         0 4px 8px rgba(0, 0, 0, 0.3),
-
+        0 8px 16px rgba(0, 0, 0, 0.2);
+}
 
 /* Text lines - start hidden and animate in */
 .home-page .content-line {
@@ -207,7 +208,7 @@ html, body {
     animation-delay: 0.4s;
 }
 
-keyframes content-reveal {
+@keyframes content-reveal {
     0% {
         opacity: 0;
         transform: translateY(100vh);
@@ -236,7 +237,7 @@ keyframes content-reveal {
     transform: rotate(-1.5deg);
 }
 
-.home-page .content-line:nth-child(2).reveal
+.home-page .content-line:nth-child(2).revealed {
     opacity: 1;
     transform: rotate(1.5deg);
 }
@@ -333,7 +334,7 @@ keyframes content-reveal {
 
 .menu-page .button-wrapper img:hover {
     transform: scale(1.01);
-    box-shadow: 0 15px 40px rgba(255,255,255
+    box-shadow: 0 15px 40px rgba(255,255,255,0.2);
 }
 
 /* Number badge on buttons */
@@ -440,18 +441,18 @@ body.letter-group-page-body {
 .letter-group-page a:hover img {
     transform: scale(1.02);
     filter: brightness(1.1) saturate(1.15);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 .letter-group-page a:active {
     transform: scale(0.98);
 }
 
-/* Individual Letter Page Styles - UPDATED WITH BACKGROUND IMAGE */
+/* Individual Letter Page Styles */
 .letter-page {
     position: relative;
     min-height: 100vh;
-    background: #000 url('../media/letters-bg amazing.png') center/cover no-repeat;
+    background: #000;
     color: #fff;
     font-family: 'HuhFont', monospace;
     display: flex;
@@ -529,11 +530,6 @@ body.letter-group-page-body {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* Override for letter 19 - no background image */
-body.letter19-page .letter-page {
-    background: #000 !important;
-}
-
 /* Back Button (fixed corner) - shared across pages */
 .back-btn {
     position: fixed;
@@ -554,7 +550,7 @@ body.letter19-page .letter-page {
     letter-spacing: 0.5px;
     text-decoration: none !important;
     box-shadow: none !important;
-    -webkit-tap-highlight-color: transparent
+    -webkit-tap-highlight-color: transparent;
     tap-highlight-color: transparent;
 }
 
