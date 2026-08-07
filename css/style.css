@@ -493,25 +493,21 @@ body.letter-group-page-body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     color: #fff;
     text-decoration: none;
     transition: all 0.3s ease;
-    padding: 10px 18px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-family: 'HuhFont', monospace;
 }
 
 .letter-page .back-link:hover {
     color: #fff;
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.5);
     text-decoration: underline;
 }
 
 .letter-page .back-link:active {
     transform: scale(0.95);
+    opacity: 0.7;
 }
 
 /* Back Button (fixed corner) - shared across pages */
