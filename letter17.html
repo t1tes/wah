@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="confetti-container" aria-hidden="true"></div>
 
     <div class="letter-page">
         <h1>Letter 17: One last time</h1>
@@ -40,32 +39,6 @@ Maybe that's what I mean when I say I miss the little things, not the perfect mo
         </div>
     </div>
 
-    <script>
-        const confettiContainer = document.querySelector('.confetti-container');
-        const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9a', '#a29bfe', '#fd79a8', '#00cec9', '#fdcb6e', '#e17055', '#74b9ff', '#fab1a0', '#55efc4', '#ffeaa7', '#ff7675', '#a29bfe'];
-
-        function createConfetti() {
-            for (let i = 0; i < 30; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.width = Math.random() * 8 + 6 + 'px';
-                confetti.style.height = Math.random() * 8 + 6 + 'px';
-                confetti.style.animationDuration = Math.random() * 4 + 6 + 's';
-                confetti.style.animationDelay = Math.random() * 5 + 's';
-                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-                confettiContainer.appendChild(confetti);
-            }
-        }
-
-        createConfetti();
-
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        if (prefersReducedMotion.matches) {
-            confettiContainer.style.display = 'none';
-        }
-    </script>
     <script src="scripts/page-transitions.js"></script>
 </body>
 </html>
