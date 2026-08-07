@@ -17,7 +17,7 @@
      * @param {number} options.fadeDuration - Fade in/out duration in ms (default: 300)
      */
     function initLetterTransitions(options = {}) {
-        console.log('[LetterTransition] initLetterTransitions called', options);
+        console.log('[LetterTransition] >>> initLetterTransitions called <<<', options);
         const config = {
             defaultText: options.defaultText || 'Opening Letter...',
             holdDuration: options.holdDuration || 1800,
@@ -203,5 +203,22 @@
 
     // Export for use in pages
     window.initLetterTransitions = initLetterTransitions;
+
+    // Auto-initialize if on a letter group page (backup in case inline script doesn't call it)
+    if (document.querySelector('.letter-group-page')) {
+        console.log('[LetterTransition] Auto-detected letter group page, will init on DOM ready');
+        const runInit = () => {
+            console.log('[LetterTransition] Auto-init running');
+            initLetterTransitions({
+                defaultText: 'Opening Letter...',
+                holdDuration: 1800
+            });
+        };
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', runInit);
+        } else {
+            runInit();
+        }
+    }
 
 })();
