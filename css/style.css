@@ -496,7 +496,6 @@ body.letter-group-page-body {
     font-size: 1.8rem;
     color: #fff;
     text-decoration: none;
-    transition: all 0.3s ease;
     font-family: 'HuhFont', monospace;
 }
 
@@ -506,12 +505,7 @@ body.letter-group-page-body {
 
 .letter-page .back-link:hover {
     color: #fff;
-    text-decoration: underline;
-}
-
-.letter-page .back-link:active {
-    transform: scale(0.95);
-    opacity: 0.7;
+    text-decoration: none;
 }
 
 /* Back Button (fixed corner) - shared across pages */
