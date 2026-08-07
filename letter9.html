@@ -4,23 +4,39 @@
     <meta name="view-transition" content="same-origin">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter 1</title>
+    <title>Letter 9 - Ocean</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Confetti Container -->
     <div class="confetti-container" aria-hidden="true"></div>
 
     <div class="letter-page">
-        <h1>Letter 1</h1>
-        <p>This is the placeholder content for letter 1. Replace this with your actual letter content.</p>
+        <h1>Letter 9: Ocean</h1>
+        <div class="letter-content">Dear Jami,
+
+Do you remember when you used to mistake rocks for fishes? I still think about that sometimes. It's such a small memory, almost nothing compared to all the other things we've shared, but I think it says something about you. You looked at something ordinary and saw something else, something more.
+
+Maybe that's why I think about you whenever I look at the ocean, because the ocean feels like the kind of place where your mind belongs: slow, endless, always moving, but never in a hurry. I dream of you, and it feels like that, like something blue and quiet and impossible to fully understand.
+
+I met someone who reminds me of warm-colored skies, the kind that happen right before the sun disappears, the kind that makes you stop for a second because you don't want to miss them. And somehow, I think of you during those moments. I think of you when the sun rises, and even more when it sets, maybe because there is something about endings that make people remember what they had.
+
+I think about the way your fingers used to trace the palm of my hand. I think about the little moments that probably felt normal when they happened, the moments where I didn't realize I would miss them later. It's strange how memory works: how something so small can stay with you, a touch, a look, a few seconds of silence, or a moment between songs.
+
+Sometimes I think about how many versions of us exist in my head, all the possibilities, and all the little choices that could have changed things. Every wave in the ocean feels like another version of a moment we could have had: a different conversation, a different day, a different ending. But maybe that's what makes memories difficult: they are not just things that happened, but also everything we imagined could have happened.
+
+I think that's why I sometimes wish you could just float. Not because I want you to stop caring (I actually think one of the most beautiful things about you is how much you care), but sometimes I wish you could experience life without feeling like you have to hold everything at once. I wish you could just exist, move slowly, and let things pass by without feeling like you have to understand every single thing that happens. Like the tides: the ocean doesn't rush, it doesn't apologize for moving differently every day, it just moves. Sometimes it's calm, sometimes it's violent, and sometimes it pulls away before coming back again, yet somehow, it is still the ocean through all of it.
+
+I think people forget that they are allowed to be like that too. You don't always have to know where you're going, you don't always have to have everything figured out, and you don't always have to turn every feeling into an answer. Sometimes a feeling can just be a feeling, and sometimes a moment can just be a moment.
+
+I hope you get to experience more of those: the moments where you don't have to prove anything, the moments where you aren't worrying about what comes next, and the moments where you're just sitting somewhere, looking around, and realizing you're actually there. I think that's what I want for you, not a perfect life or a life without problems, but just a life where you allow yourself to notice the good things while they are happening.
+
+Because I think you're someone who sometimes realizes the importance of moments after they're already gone. You keep so many memories because they mean so much to you, but I hope you also let yourself live inside them while they're happening. Like the ocean, like the sky, like the little kid who thought rocks were fishes because she believed there was always something more to find. I think that part of you is still there, and I hope it always stays.</div>
         <div class="back-link">
-            <a href="letter-group1.html">← Back to Letters</a>
+            <a href="letter-group2.html">← Back to Letters 7-12</a>
         </div>
     </div>
 
     <script>
-        // Generate dynamic confetti
         const confettiContainer = document.querySelector('.confetti-container');
         const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9a', '#a29bfe', '#fd79a8', '#00cec9', '#fdcb6e', '#e17055', '#74b9ff', '#fab1a0', '#55efc4', '#ffeaa7', '#ff7675', '#a29bfe'];
 
@@ -39,10 +55,8 @@
             }
         }
 
-        // Initialize confetti
         createConfetti();
 
-        // Respect reduced motion preference
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         if (prefersReducedMotion.matches) {
             confettiContainer.style.display = 'none';

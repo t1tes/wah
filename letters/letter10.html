@@ -4,21 +4,70 @@
     <meta name="view-transition" content="same-origin">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter 10</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="scripts/page-transitions.js"></script>
+    <title>Letter 10 - Still dont hate you btw</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <!-- Back Button -->
-    <a href="letter-group2.html" class="back-btn" aria-label="Back to letters">← Back</a>
+    <div class="confetti-container" aria-hidden="true"></div>
 
     <div class="letter-page">
-        <h1>Letter 10</h1>
-        <p>This is the placeholder content for letter 10. Replace this with your actual letter content.</p>
+        <h1>Letter 10: Still dont hate you btw</h1>
+        <div class="letter-content">Dear Jayme,
+
+Still don't hate you, by the way. I know that sounds like such a random way to start a letter, but honestly, it feels fitting. Because if there's one thing about us, it's that there were so many things left unsaid, so many moments where I had something I wanted to say, but I didn't know how, and so many times where I thought about saying something and then convinced myself that maybe it was better left alone.
+
+But I still remember that day. Were you looking out the window? I wonder if you remember it too. The day we were only ten feet apart, waiting for the same bus, and somehow everything felt slower than usual. Then you started walking in my direction, and for some reason that tiny moment stayed with me. Nothing huge happened, no big confession, no dramatic scene; it was just you walking toward me. But I remember looking at you like you were something the sun had accidentally left behind, like something warm that appeared in an ordinary moment.
+
+I think that's what I liked about being around you: it was never only the big things, but the small things that somehow became important. The conversations that lasted longer than they were supposed to, the moments where we were just existing beside each other, and the times where nothing special was happening, but I still didn't want the moment to end.
+
+I think there's a part of me that always wanted to hold onto those moments, not because I thought they were perfect or that everything between us would always be easy, but because they were real. I remember thinking about how the voice wants to become a hand, and the hand wants to do something useful. Maybe that's what I always felt: wanting to do something, wanting to reach you, and wanting to make things easier somehow. Not because I thought I could fix everything (I know I can't), but because caring about someone naturally makes you want to move closer when they're hurting.
+
+I think that's something I learned from you: that sometimes what people really want isn't someone to solve everything, but sometimes they just want someone to stay, someone who says, "I'm here," someone who notices, and someone who sees them.
+
+And I think maybe that's what both of us wanted: to be seen, really seen, not just the version we show everyone else or the version that's easier to love, but the whole person. The complicated one, the one who has doubts, the one who has fears, and the one who sometimes doesn't even know what they need.
+
+I think that's why I never wanted to see your wounds as something that made you less. I don't think the things that happened to you erased the person you were before them; if anything, they became part of the story that made you who you are now. But I never want you to think that I loved you because of your pain. I loved you because you were you. Before I knew everything, before I understood every part of your story, and before I knew what hurt you, I loved the person who laughed with me, the person who made ordinary days feel different, and the person who could make me forget about everything else for a while.
+
+And maybe that's why this is still difficult, because when you care about someone, you don't just miss the big moments; you miss the small ones, the way things used to feel, and the version of life where something as simple as waiting for a bus could become a memory you carry for years.
+
+I think sometimes people underestimate how much a person can become part of your everyday life, not in some dramatic way, but just quietly, like a song you don't notice playing until it stops and then suddenly everything feels a little different.
+
+But Jayme, even with all of that, I hope you know something: I never wanted you to feel like you had to be someone else for me, or that you had to hide the parts of yourself you thought were difficult. I wanted you to be yourself: the same person who makes weird jokes, who gets excited about random things, who overthinks everything, and who somehow manages to care so much. All of it.
+
+I think love is strange because it asks us to accept that someone can be both beautiful and complicated, that someone can make mistakes and still matter, that someone can hurt and still be worth understanding, and that someone can be unsure and still be loved.
+
+So, yeah, still don't hate you. I don't think I ever could. Because no matter what happens, you were still someone who made my life feel different. And I'll always be grateful that, for a while, I got to stand ten feet away from you and feel like the whole world had slowed down.</div>
         <div class="back-link">
-            <a href="letter-group2.html">← Back to Letters</a>
+            <a href="../letter-group2.html">← Back to Letters 7-12</a>
         </div>
     </div>
-    <script src="scripts/page-transitions.js"></script>
+
+    <script>
+        const confettiContainer = document.querySelector('.confetti-container');
+        const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9a', '#a29bfe', '#fd79a8', '#00cec9', '#fdcb6e', '#e17055', '#74b9ff', '#fab1a0', '#55efc4', '#ffeaa7', '#ff7675', '#a29bfe'];
+
+        function createConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 8 + 6 + 'px';
+                confetti.style.height = Math.random() * 8 + 6 + 'px';
+                confetti.style.animationDuration = Math.random() * 4 + 6 + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        createConfetti();
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (prefersReducedMotion.matches) {
+            confettiContainer.style.display = 'none';
+        }
+    </script>
+    <script src="../scripts/page-transitions.js"></script>
 </body>
 </html>

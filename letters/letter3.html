@@ -4,21 +4,70 @@
     <meta name="view-transition" content="same-origin">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter 3</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="scripts/page-transitions.js"></script>
+    <title>Letter 3 - Chree?</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <!-- Back Button -->
-    <a href="letter-group1.html" class="back-btn" aria-label="Back to letters">← Back</a>
+    <div class="confetti-container" aria-hidden="true"></div>
 
     <div class="letter-page">
-        <h1>Letter 3</h1>
-        <p>This is the placeholder content for letter 3. Replace this with your actual letter content.</p>
+        <h1>Letter 3: Chree?</h1>
+        <div class="letter-content">Dear Jayme,
+
+Ahh, religion. Scary topic, very cliché, honestly. But I remember you saying something that stayed with me: that love, to you, is something much larger than the usual idea of romantic love, that it feels almost like a religion, something bigger than yourself, something beautiful, but also terrifying.
+
+And I think that's such a Jayme way to describe something: to make something as simple as love feel like something you have to stand in front of and wonder about.
+
+I'm not even a religious person. I barely know what I believe half the time, and sometimes I'm not even sure I understand myself. But when I look at you and think about everything we've shared, there's a part of me that understands what you mean. Not because I think love makes everything perfect, but actually, maybe the opposite. I think the reason it feels so big is because it includes everything: the good moments, the confusing ones, the moments where we don't understand each other, and the moments where we're scared. It's terrifying because caring about something means giving it the ability to affect you.
+
+And you've always seemed like someone who feels things deeply. Sometimes I think your mind is like a little brook that never stops running, always moving, always searching, always murmuring to itself. Like you were born with an arrow in your heart, and somehow both pulling it out and leaving it there hurts. You're always reaching for something: a new idea, a new experience, a new version of yourself, or something you want to understand.
+
+And sometimes I wonder if that's exhausting, to always be thinking, to always be searching, to never fully let yourself just sit still. But at the same time, I think that's also part of what makes you, you. You don't just move through life; you question it. You look at things and ask why they are the way they are, you look at yourself and ask who you are becoming, and you look at the world and wonder what else is out there.
+
+I think there's something almost painful about being someone who feels everything so intensely. Because when you care, you really care. When you love something, you love it completely. When something hurts you, it doesn't just pass through you; it stays.
+
+And I know sometimes you wish your mind would just be quiet. I know sometimes you probably wish you could stop analyzing every little thing, stop wondering if you're doing enough, and stop asking yourself if you're enough. But I don't think that means there's something wrong with you. I think it just means you're someone who has always been trying to understand the world around you, and maybe yourself too.
+
+There's a line I always think about, about how the more someone becomes obsessed with something divine, the less innocent they feel. The closer you get to something bigger than yourself, the more aware you become of your own imperfections. Maybe that's why love can feel frightening, because to truly love something means allowing yourself to be seen, not the version of yourself you carefully build, but the actual one, the messy one, the uncertain one, the one who doesn't always know what they're doing.
+
+And I think that's the part people forget. Love isn't scary because it shows you perfection; it's scary because it shows you reality, all the things you wish you could hide, and all the parts of yourself you're still learning how to understand.
+
+But Jayme, I hope you know that I don't look at those parts of you as things that need to be solved. I think they're just parts of your story, the same way every thought, every mistake, every strange little interest, and every random thing you love became part of the person I know.
+
+I think if there is some kind of God, or something greater than us, I don't think they would look at you and see someone who failed. I think they would see someone who tried, someone who questioned, someone who cared enough to search, and someone who loved the world so much that sometimes it hurt.
+
+And maybe that's what makes love feel like a religion, because it asks so much from us. It asks us to believe in something we cannot completely prove, it asks us to be vulnerable, and it asks us to keep reaching even when we are afraid. And maybe that's why you and love have always felt connected to me, because you have always been someone who reaches.</div>
         <div class="back-link">
-            <a href="letter-group1.html">← Back to Letters</a>
+            <a href="../letter-group1.html">← Back to Letters 1-6</a>
         </div>
     </div>
-    <script src="scripts/page-transitions.js"></script>
+
+    <script>
+        const confettiContainer = document.querySelector('.confetti-container');
+        const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9a', '#a29bfe', '#fd79a8', '#00cec9', '#fdcb6e', '#e17055', '#74b9ff', '#fab1a0', '#55efc4', '#ffeaa7', '#ff7675', '#a29bfe'];
+
+        function createConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 8 + 6 + 'px';
+                confetti.style.height = Math.random() * 8 + 6 + 'px';
+                confetti.style.animationDuration = Math.random() * 4 + 6 + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        createConfetti();
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (prefersReducedMotion.matches) {
+            confettiContainer.style.display = 'none';
+        }
+    </script>
+    <script src="../scripts/page-transitions.js"></script>
 </body>
 </html>

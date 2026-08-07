@@ -4,23 +4,43 @@
     <meta name="view-transition" content="same-origin">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter 1</title>
+    <title>Letter 8 - Stay there</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Confetti Container -->
     <div class="confetti-container" aria-hidden="true"></div>
 
     <div class="letter-page">
-        <h1>Letter 1</h1>
-        <p>This is the placeholder content for letter 1. Replace this with your actual letter content.</p>
+        <h1>Letter 8: Stay there</h1>
+        <div class="letter-content">Dear Jayme,
+
+You will forever reflect the flash that comes from my digicam. I don't know why that image stayed with me, but it did. Maybe because there is something about photographs that feels strange, a tiny moment frozen in time, something that only lasted a second but somehow becomes something you can return to years later.
+
+A picture never really tells the whole story. It doesn't show what happened before it was taken, it doesn't show what happened after, and it doesn't show the conversations, the jokes, or the things nobody else noticed. But somehow, when you look at it again, you remember.
+
+And I think that's what you are to me: a collection of little moments I somehow ended up keeping. The things that seemed ordinary when they happened but became important later, the random conversations, the jokes that only make sense to us, and the moments where nothing huge happened, but I still remember them.
+
+I think sometimes people try to make love sound like it is only made of huge gestures, big promises, or big declarations. But I think a lot of it is just remembering: remembering how someone laughs, remembering the things they say without thinking, remembering the way they look when they're excited about something, and remembering the small details they don't even realize you noticed. I think that's why I remember so much about you, because when you love someone, you pay attention, you notice, and you keep things.
+
+And maybe that's why I always found it funny when people say things like, "You owe no one anything." I understand what they mean, you shouldn't destroy yourself trying to please everyone or spend your whole life proving your worth to people. But I don't think love works that way. I don't think love is about owing nothing to anyone; I think we owe each other something. Not in a way where someone owns a part of you or where love becomes a responsibility, but in the simple way that being human means we affect each other. We leave pieces of ourselves with people, and we carry pieces of them too.
+
+Vulnerability is part of that. It's awkward, it's embarrassing, and sometimes it's messy. Sometimes you say too much, and sometimes you say nothing when you should have. But it's the only way someone can truly know you. And I think being known is one of the scariest things in the world, because everyone wants to be loved and chosen, but when it actually happens, when someone really sees you, it can feel impossible to believe. Even you.
+
+I know sometimes you struggle with accepting that someone could love you without you having to earn it first, like there's always some condition, or like you have to become better before someone is allowed to stay. But I hope you know that love isn't something you only receive after becoming the perfect version of yourself, because that version doesn't exist. Everyone is unfinished, everyone is figuring themselves out, and everyone has parts they don't understand yet. Somehow, we still find people who make life feel a little easier to carry.
+
+I think that's what people mean when they talk about love: not that someone fixes everything or saves you from yourself, but just that for a moment, the world feels less lonely.
+
+So when things become heavy, I hope you let yourself feel them. I hope you don't immediately try to push everything away. I know you have this habit of carrying things quietly, of trying to handle things by yourself, and of convincing yourself that you can just get through it. And maybe sometimes you can, but you don't always have to. You can feel something without letting it consume you, and you can admit something hurts without letting that pain become the only thing you are. You are allowed to have difficult days, you are allowed to not know what you're doing, and you are allowed to be a person.
+
+And Jayme, if there is one thing I hope you remember from this letter, it's that you are not alone in the moments where your mind tells you that you are. There are people who have seen pieces of you, the good ones, the difficult ones, the quiet ones, and the strange ones, and somehow, those pieces only make you more yourself.
+
+So whenever you feel lost, maybe think about that digicam flash: a tiny moment, a little burst of light, gone almost immediately, but somehow still captured, still remembered, and still there. That's what you are: a moment I was lucky enough to witness, and one I'll always remember.</div>
         <div class="back-link">
-            <a href="letter-group1.html">← Back to Letters</a>
+            <a href="letter-group2.html">← Back to Letters 7-12</a>
         </div>
     </div>
 
     <script>
-        // Generate dynamic confetti
         const confettiContainer = document.querySelector('.confetti-container');
         const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9a', '#a29bfe', '#fd79a8', '#00cec9', '#fdcb6e', '#e17055', '#74b9ff', '#fab1a0', '#55efc4', '#ffeaa7', '#ff7675', '#a29bfe'];
 
@@ -39,10 +59,8 @@
             }
         }
 
-        // Initialize confetti
         createConfetti();
 
-        // Respect reduced motion preference
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         if (prefersReducedMotion.matches) {
             confettiContainer.style.display = 'none';

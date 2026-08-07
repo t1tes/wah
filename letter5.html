@@ -4,23 +4,35 @@
     <meta name="view-transition" content="same-origin">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter 1</title>
+    <title>Letter 5 - This song</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Confetti Container -->
     <div class="confetti-container" aria-hidden="true"></div>
 
     <div class="letter-page">
-        <h1>Letter 1</h1>
-        <p>This is the placeholder content for letter 1. Replace this with your actual letter content.</p>
+        <h1>Letter 5: This song</h1>
+        <div class="letter-content">Dear Jayme,
+
+I think you're like this song, and I think you think I'm like this song too. Maybe that's why it feels so funny, because whenever I hear it, I don't even immediately think of some dramatic love story; I just think about us laughing, the stupid moments, and the little things that probably wouldn't mean anything to anyone else but somehow became ours.
+
+I think the first thing people notice about you is probably your relationship with music. Not just that you listen to a lot of songs, because a lot of people do that, but the way you treat music like it's something alive, like it listens back, like every song has its own little world and you're just trying to understand it. I love the way you find pieces of yourself in music, and the way a certain song can suddenly remind you of a memory, a person, or a feeling you didn't even know you had.
+
+Sometimes I think music is one of the ways you explain yourself, maybe because there are things that are difficult to say directly. Sometimes a song can say something you've been trying to say for years, and I think that's beautiful. I think that's why I like sharing music with you too, because when I show you a song, I'm not just showing you a song; I'm showing you a small piece of me, something I liked before you knew me, something that existed in my life before you became part of it. And somehow, letting you into those little pieces feels important.
+
+Because love, at least to me, has always felt intentional, not like something that just happens to you, or like some random thing that the universe decided for you. I don't think we were brought together by some perfect coincidence, or that everything was already written somewhere waiting for us to find it. I think I chose you. I think I keep choosing you. Not because it was always easy, or because everything about us was simple, but because every time I got to know another part of you, every time I learned something new, and every time you showed me another little piece of yourself, I wanted to stay. I love you intentionally, with awareness, and with every part of myself that knows what it means to choose someone.
+
+And honestly, I think I love you more than this song, which is funny because I know how much songs can mean to you. But songs end, they repeat, and they eventually become memories. The things I remember about you are not just songs; they're moments, conversations, the way you laugh, the way you react when you're surprised, the way you get excited when talking about something you care about, and the way you can make something ordinary feel like something worth remembering.
+
+Maybe that's why I think about you when I hear it, because it isn't really about the song anymore; it's about the person I associate with it, it's about you. And maybe one day you'll hear this song somewhere random, playing in a store, through someone else's speakers, or somewhere neither of us expected, and maybe for a second you'll think of me. Maybe you'll remember us laughing, or how we made something so small feel like it belonged only to us.
+
+I think that's one of my favorite things about memories: they don't really ask permission before coming back. A smell, a song, or a random place, and suddenly you're somewhere you haven't been in years. So if this song ever finds you again, I hope it brings you back to something good, not something painful, not something you have to hold onto, but just something that existed, something real, and something that made you smile. Because honestly, if I had to choose what I wanted to be remembered as, I think it would be simple: I just want to be someone who made you laugh, someone who made your life a little brighter, and someone who gave you a song to remember.</div>
         <div class="back-link">
-            <a href="letter-group1.html">← Back to Letters</a>
+            <a href="letter-group1.html">← Back to Letters 1-6</a>
         </div>
     </div>
 
     <script>
-        // Generate dynamic confetti
         const confettiContainer = document.querySelector('.confetti-container');
         const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9a', '#a29bfe', '#fd79a8', '#00cec9', '#fdcb6e', '#e17055', '#74b9ff', '#fab1a0', '#55efc4', '#ffeaa7', '#ff7675', '#a29bfe'];
 
@@ -39,10 +51,8 @@
             }
         }
 
-        // Initialize confetti
         createConfetti();
 
-        // Respect reduced motion preference
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         if (prefersReducedMotion.matches) {
             confettiContainer.style.display = 'none';

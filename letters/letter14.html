@@ -4,21 +4,68 @@
     <meta name="view-transition" content="same-origin">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter 14</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="scripts/page-transitions.js"></script>
+    <title>Letter 14 - Present</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <!-- Back Button -->
-    <a href="letter-group3.html" class="back-btn" aria-label="Back to letters">← Back</a>
+    <div class="confetti-container" aria-hidden="true"></div>
 
     <div class="letter-page">
-        <h1>Letter 14</h1>
-        <p>This is the placeholder content for letter 14. Replace this with your actual letter content.</p>
+        <h1>Letter 14: Present</h1>
+        <div class="letter-content">Dear Jayme,
+
+We're going to walk to your home. And I know that sounds like such a small thing, a normal thing, something anyone else might forget. But I already know I'm going to memorize the way: the turns, the streets, and the little details I usually wouldn't pay attention to. Maybe I'll even find a quicker way there just because I can.
+
+I think that's the kind of thing I do with places that mean something to me: I remember them, and I keep little pieces of them. And somehow, a road stops being just a road because it was the road that led me to you.
+
+I think about how much I miss you in the smallest moments, like when my lips are cracked and I remember what it felt like to be close to you. It's strange how the body remembers things before the mind even has time to catch up: a feeling, a place, a song, or a random moment, and suddenly you're reminded of someone.
+
+I think about the idea that the only love wasted is love withheld, and I think there's a lot of truth in that. Not because every love story has to last forever, or because every person we love is meant to stay in our lives exactly the same way, but because hiding love does not protect anyone. Sometimes we spend so much time trying not to care too much, trying not to show too much, and trying not to make ourselves vulnerable, but then we look back and realize the things we regret most are usually the things we never allowed ourselves to say.
+
+I think love is complicated because people often think loving someone means wanting them to never change, but I don't think that's true. I don't think love is saying, "Stay exactly the way you are forever," because people aren't meant to stay still. We grow, we change, and we become people our past selves would not recognize. I think love is something closer to saying: "I believe I will still recognize you," even when you become someone new, even when life changes you, and even when the person standing in front of me is different from the person I first met.
+
+I think that's the kind of love I mean, the kind that doesn't hold someone hostage to an old version of themselves, but lets someone become more. I hope you become more. I hope you see places you've never seen, try things that scare you, meet people who change the way you think, and become someone you're proud of. And I hope I never become someone who only loves the version of you that existed when you were close to me, because you deserve a life beyond any single person; you deserve a life that belongs to you.
+
+There's another thing I think about often: how people say time heals all wounds. I don't know if I completely believe that. Maybe sometimes time doesn't erase things; maybe sometimes it just changes the way we carry them. Maybe some things don't disappear, but become something else: a scar, a memory, or a story we tell differently. And maybe that's okay. Maybe not everything has to be completely gone for us to be okay, and some things can stay without hurting forever.
+
+I think about all the moments where I wished I could slow time down: the ordinary ones, the ones I didn't realize were becoming memories while they were happening. Walking, talking, laughing, just being near you. It's funny because when you're living through something, you rarely realize it's the moment you'll miss later; you only understand after it has already passed.
+
+Maybe that's why I want to remember as much as I can: not because I'm trying to live in the past, but because those moments were real. They happened, they mattered, and you mattered. And even if life takes us in different directions, I hope you never think that something only mattered because it lasted forever. Some things are important because they happened at all, and some people change you even if they are only part of one chapter.
+
+I think that must be what this is: a chapter. A beautiful, confusing, complicated chapter, one that I'll always be grateful I got to read.
+
+So when we walk to your home, I'll probably pretend it's just a normal walk and act like I'm not memorizing everything, but I will. Because that's what I do: when something means something to me, I remember. And you are something I will always remember.</div>
         <div class="back-link">
-            <a href="letter-group3.html">← Back to Letters</a>
+            <a href="../letter-group3.html">← Back to Letters 13-18</a>
         </div>
     </div>
-    <script src="scripts/page-transitions.js"></script>
+
+    <script>
+        const confettiContainer = document.querySelector('.confetti-container');
+        const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9a', '#a29bfe', '#fd79a8', '#00cec9', '#fdcb6e', '#e17055', '#74b9ff', '#fab1a0', '#55efc4', '#ffeaa7', '#ff7675', '#a29bfe'];
+
+        function createConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 8 + 6 + 'px';
+                confetti.style.height = Math.random() * 8 + 6 + 'px';
+                confetti.style.animationDuration = Math.random() * 4 + 6 + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        createConfetti();
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (prefersReducedMotion.matches) {
+            confettiContainer.style.display = 'none';
+        }
+    </script>
+    <script src="../scripts/page-transitions.js"></script>
 </body>
 </html>

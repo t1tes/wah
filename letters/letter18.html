@@ -4,21 +4,70 @@
     <meta name="view-transition" content="same-origin">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter 18</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="scripts/page-transitions.js"></script>
+    <title>Letter 18 - You</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <!-- Back Button -->
-    <a href="letter-group3.html" class="back-btn" aria-label="Back to letters">← Back</a>
+    <div class="confetti-container" aria-hidden="true"></div>
 
     <div class="letter-page">
-        <h1>Letter 18</h1>
-        <p>This is the placeholder content for letter 18. Replace this with your actual letter content.</p>
+        <h1>Letter 18: You</h1>
+        <div class="letter-content">Dear Jayme,
+
+Happy birthday. Today is one of those days where I feel your absence a little more than usual. Maybe because this was supposed to be different, maybe because I imagined this day a hundred different ways, or maybe because birthdays have a strange way of reminding us of time: how quickly it moves, and how much can change between one year and the next.
+
+I still remember every time I got you flowers. Even though sometimes only a few people knew they were from me, that was never really the point. I never did it because I wanted everyone to know or needed credit; I just liked having them in my hands, walking through a crowd toward you, knowing you had no idea. There was something about that moment that I loved every single time: seeing people smile as I passed by and seeing them notice.
+
+But even that wasn't the best part. The best part was when they finally reached you, when you looked at them and gave me that big mochi smile, the one where you would say something like, "Oh, you didn't have to." But the thing was, I wanted to. I wanted to. And somehow that little moment made everything feel brighter, like the whole place lit up for a second, and somehow, my soul did too.
+
+I think about how strange it is that such a simple thing can hold so much meaning. Flowers are just flowers, but when you give them to someone you love, they become something else: a memory, a feeling, a moment where you got to say something without actually saying it. Maybe that's why I liked doing things for you, not because I expected anything back or needed you to react a certain way, but I just liked seeing you happy and knowing that, even for a few seconds, I gave you something good.
+
+I think love is often found in those small, almost invisible moments, not the dramatic ones people talk about or the ones that look perfect from the outside, but the little ones nobody else notices: the way someone laughs, the way someone says your name, the way they look when they're surprised, and the way they make a normal day feel slightly different.
+
+I think about how much of life is made up of those moments: every tick of the clock, every time we rushed to beat a yellow light, every bite that was never properly chewed because we were too busy talking, and every step that somehow led me to you. When I look back, it feels strange knowing that all those tiny things were building something I didn't even realize I was carrying: a collection of moments, a person becoming important to me, you becoming important to me.
+
+And now you're eighteen: eighteen years of being Jayme, eighteen years of existing in this world, and eighteen years of walking through humid, crowded streets and orange sunsets. A place that probably feels like it has barely changed: the same roads, the same buildings, the same familiar scenery, a place frozen in time.
+
+But you're not frozen there. That's the strange thing about growing up: sometimes the world around us looks exactly the same, but we are completely different. You might come home one day after experiencing something new, after meeting different people, and after becoming someone who no longer fits perfectly into the version of yourself you left behind. Maybe nostalgia will hit you, or maybe you'll stand somewhere familiar and suddenly realize you are both the person who left and the person who returned.
+
+You'll remember the days before you turned eighteen, the days when you were still trying to figure yourself out, and the days when you wondered if things would ever get better. And then suddenly, you're here: eighteen, older, changed, still becoming. Maybe you'll feel stuck between two versions of yourself: the person you used to be and the person you are becoming. Maybe you won't know exactly where you belong. But I hope you remember that you don't have to choose between them; you are allowed to be made of every version of yourself: the child who needed love, the teenager who was trying to survive, and the person standing here now; they are all you.
+
+I think about the girl who was thirteen: the one who felt alone, the one who struggled to imagine a future. And I wish she could see you now. I wish she could see the places you've been, the people you've met, and the things you've survived. I wish she could see that she was never stuck there forever.
+
+Because look at you, you made it. The sun is still shining, the breeze is still moving through your hair, and somehow, despite everything, you are here. You survived the days you thought would break you, and I hope you know that softer days are waiting for you. Not because life suddenly becomes perfect (it won't), but because you are no longer the same person who faced those old storms. You've grown, you've changed, and there is still so much of your story left.
+
+Happy birthday, Jayme. I hope eighteen is kind to you, I hope it gives you moments you never expected, and I hope, whenever you look back on this year, you remember that somewhere in it, someone was incredibly grateful that you existed.</div>
         <div class="back-link">
-            <a href="letter-group3.html">← Back to Letters</a>
+            <a href="../letter-group3.html">← Back to Letters 13-18</a>
         </div>
     </div>
-    <script src="scripts/page-transitions.js"></script>
+
+    <script>
+        const confettiContainer = document.querySelector('.confetti-container');
+        const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9a', '#a29bfe', '#fd79a8', '#00cec9', '#fdcb6e', '#e17055', '#74b9ff', '#fab1a0', '#55efc4', '#ffeaa7', '#ff7675', '#a29bfe'];
+
+        function createConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 8 + 6 + 'px';
+                confetti.style.height = Math.random() * 8 + 6 + 'px';
+                confetti.style.animationDuration = Math.random() * 4 + 6 + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        createConfetti();
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (prefersReducedMotion.matches) {
+            confettiContainer.style.display = 'none';
+        }
+    </script>
+    <script src="../scripts/page-transitions.js"></script>
 </body>
 </html>

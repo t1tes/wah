@@ -4,21 +4,76 @@
     <meta name="view-transition" content="same-origin">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter 2</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="scripts/page-transitions.js"></script>
+    <title>Letter 2 - That's beautiful</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <!-- Back Button -->
-    <a href="letter-group1.html" class="back-btn" aria-label="Back to letters">← Back</a>
+    <div class="confetti-container" aria-hidden="true"></div>
 
     <div class="letter-page">
-        <h1>Letter 2</h1>
-        <p>This is the placeholder content for letter 2. Replace this with your actual letter content.</p>
+        <h1>Letter 2: That's beautiful</h1>
+        <div class="letter-content">Dear Jayme,
+
+I think I've loved you since I met you. I just didn't know that was what it was at the time; I think I mistook it for curiosity.
+
+Because when I first got to know you, I wanted to know everything. Not in a way where I was trying to figure you out like a puzzle, but in the way you want to understand something beautiful that you've never seen before. I was curious about what made you, you.
+
+I was curious about your music, the songs you could listen to over and over again, the ones that meant something to you even if nobody else understood why. I was curious about the way your mind worked, the way you could jump from one thought to another and somehow still make sense. I was curious about your late night thoughts, the things you think about when everyone else is asleep. I was curious about the things you never say out loud. I was curious about the way you love, the way you care, the way you get attached to little things, and the way you can find meaning in things other people might just walk past.
+
+I think that was the beginning of it. Not some big dramatic moment where everything suddenly changed, but just me slowly realizing that I wanted to know more about you. Then more. Then somehow, I wanted to know everything. I never thought I would find something so beautiful in another person.
+
+And I don't mean just the obvious things. I don't mean only the way you look or the way you carry yourself, because those are things anyone could notice. I mean something deeper, something I don't even know how to explain properly. It's the way your mind reaches for the world. The way you can talk about life with so much curiosity, even when life hasn't always been kind to you. The way you question things instead of just accepting them. The way you look for meaning in places most people wouldn't even think to search.
+
+Sometimes you tell me things and I just sit there thinking, "How does your brain even get there?" And I love that about you. I think that's why I always wanted to share things with you: my favorite books, my favorite songs, random things that reminded me of you. Because when I find something beautiful, my first thought is always that I want you to experience it too.
+
+I think that's what love is to me. Not just saying "I love you" over and over again, or wanting someone just because they make you happy. It's wanting to give someone pieces of the world that made you happy and hoping that maybe, even for a second, it makes their world a little brighter too.
+
+I show you my favorite books because I love you.
+I play you my favorite music because I love you.
+I send you things that remind me of you because I love you.
+
+Maybe that sounds simple, but I think love is made of simple things. It's noticing something and immediately thinking of someone else. It's wanting them to see what you see. What is love if not the sharing of something beautiful, something that makes life feel a little less heavy?
+
+And honestly, I think one of my favorite things about loving you is that you make me want to share more of myself too. You make me want to show you the things I usually keep to myself, the things I think are embarrassing, and the things I'm afraid nobody would care about. Because with you, it never really felt like I had to perform. I could just exist.
+
+And maybe that's why I fell for you before I even realized it. Being around you felt natural. It felt like I didn't have to carefully choose every word or pretend to be someone cooler, smarter, or more interesting. I could just be myself and somehow that was enough.
+
+Also, I think I should mention that you make me laugh a lot, genuinely. Sometimes I think this whole letter could just be that: I just want to make you laugh. You know what? Maybe that should have been the entire letter. Because I love seeing that version of you, the one who forgets about everything for a moment, who laughs at something stupid, and who doesn't have to think about what comes next.
+
+I think there's something special about being able to make someone forget the world for a little while. So maybe that's what I want to give you. Not a perfect life or some promise that everything will always be easy, but just moments. Moments where you're happy, moments where you're laughing, and moments where you feel like yourself. If I get to be part of even a few of those moments, I think that's already something worth being grateful for.
+
+So yeah, I think I loved you since I met you. I just had to spend some time being curious about you before I realized I was already falling.</div>
         <div class="back-link">
-            <a href="letter-group1.html">← Back to Letters</a>
+            <a href="../letter-group1.html">← Back to Letters 1-6</a>
         </div>
     </div>
-    <script src="scripts/page-transitions.js"></script>
+
+    <script>
+        const confettiContainer = document.querySelector('.confetti-container');
+        const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9a', '#a29bfe', '#fd79a8', '#00cec9', '#fdcb6e', '#e17055', '#74b9ff', '#fab1a0', '#55efc4', '#ffeaa7', '#ff7675', '#a29bfe'];
+
+        function createConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 8 + 6 + 'px';
+                confetti.style.height = Math.random() * 8 + 6 + 'px';
+                confetti.style.animationDuration = Math.random() * 4 + 6 + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        createConfetti();
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (prefersReducedMotion.matches) {
+            confettiContainer.style.display = 'none';
+        }
+    </script>
+    <script src="../scripts/page-transitions.js"></script>
 </body>
 </html>

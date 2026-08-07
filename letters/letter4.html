@@ -4,21 +4,70 @@
     <meta name="view-transition" content="same-origin">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter 4</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="scripts/page-transitions.js"></script>
+    <title>Letter 4 - Trouble</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <!-- Back Button -->
-    <a href="letter-group1.html" class="back-btn" aria-label="Back to letters">← Back</a>
+    <div class="confetti-container" aria-hidden="true"></div>
 
     <div class="letter-page">
-        <h1>Letter 4</h1>
-        <p>This is the placeholder content for letter 4. Replace this with your actual letter content.</p>
+        <h1>Letter 4: Trouble</h1>
+        <div class="letter-content">Dear Passionate Pasion,
+
+I've been thinking about the things you had to go through just to get here. Not just the big things people would immediately notice, but the smaller moments too, the ones that probably shaped you without anyone realizing they were shaping you.
+
+I reread the story you wrote about yourself, the way you explained everything that happened and everything that brought you to this point. And I think, in a strange way, it's also a story about us. Maybe not always the most flattering one, or the perfect version of how things happened, but I think that's okay.
+
+I think one of the scariest things about being known by someone is that you spend so much time hoping someone will finally see you exactly as you are, and then when they actually do, there's this fear that maybe you won't be enough. Like you spent all this time wanting someone to understand you, only to wonder what they'll think once they actually do.
+
+But Jayme, I think that's the beautiful and terrifying thing about knowing someone: it's not loving an idea of them, but meeting the actual person. The person who gets annoyed, the person who overthinks, the person who laughs at weird things, and the person who has moments where they don't even understand themselves. The real person. And somehow, that's the person I got to know.
+
+You once said something about how people want to be seen as they truly are, but sometimes when someone finally looks at them, they feel like they don't measure up. I think about that a lot, because I don't think anyone is ever as simple as the worst thing they've done or the worst thing they believe about themselves. People are complicated, stories are complicated, and we are complicated.
+
+And maybe that's why I never wanted to love some perfect version of you; that version doesn't exist. I love the person who sends random thoughts, the person who gets excited over little things, and the person who can be both incredibly passionate and incredibly stubborn, the person who is Jayme.
+
+I'll love you at 1 a.m. when you're tired and everything feels overwhelming. I'll love you when you're laughing at something stupid, I'll love you when you're quiet, and I'll love you when you're unsure of yourself. Not because I think I'm saving you from those moments, or because I think I'm better than the parts of yourself you struggle with, but because those moments are also you. And I don't want to pretend I only know one side of you.
+
+Sometimes I think we get so close to people that we end up seeing the other side of them, not the version they show everyone, but the one underneath, the one they're afraid people will leave after seeing. And maybe that's what intimacy really is: not having someone think you're perfect, but having someone know you aren't, and still wanting to stay.
+
+I remember that line about seeing something mysterious underneath someone's rough edges, about looking long enough to notice there was something more underneath all the noise. I think that's what happened with you. At first, I just saw pieces: little moments, little conversations, and little things you said without realizing I would remember them. And then suddenly there was this entire person in front of me: someone I wanted to understand, someone I wanted to know more about, and someone I didn't want to reduce to one moment, one mistake, or one version of themselves.
+
+I think sometimes you're too hard on yourself. You look at everything you've done and everything you wish you did differently, and you carry it around like it's proof of something. But I don't see you that way. I see someone who is still becoming, someone who is still figuring things out, and someone who is still learning how to exist in a world that doesn't always make it easy.
+
+And maybe that's the trouble with being human. We want to be completely understood, but we're terrified of what happens when someone actually understands us. We want someone to look at us honestly, but we're afraid they'll see everything we tried to hide. But Jayme, I think being known is worth the risk. Because there's something beautiful about someone looking at all the complicated parts and saying, "I know." Not "I fixed it," not "I made it better," just: "I know." And maybe that's enough.
+
+So yeah, Passionate Pasion, I received your story: the good parts, the messy parts, the parts you're proud of, and the parts you wish you could erase. All of it. Your story is included.</div>
         <div class="back-link">
-            <a href="letter-group1.html">← Back to Letters</a>
+            <a href="../letter-group1.html">← Back to Letters 1-6</a>
         </div>
     </div>
-    <script src="scripts/page-transitions.js"></script>
+
+    <script>
+        const confettiContainer = document.querySelector('.confetti-container');
+        const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9a', '#a29bfe', '#fd79a8', '#00cec9', '#fdcb6e', '#e17055', '#74b9ff', '#fab1a0', '#55efc4', '#ffeaa7', '#ff7675', '#a29bfe'];
+
+        function createConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 8 + 6 + 'px';
+                confetti.style.height = Math.random() * 8 + 6 + 'px';
+                confetti.style.animationDuration = Math.random() * 4 + 6 + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        createConfetti();
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (prefersReducedMotion.matches) {
+            confettiContainer.style.display = 'none';
+        }
+    </script>
+    <script src="../scripts/page-transitions.js"></script>
 </body>
 </html>

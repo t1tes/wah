@@ -4,21 +4,70 @@
     <meta name="view-transition" content="same-origin">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter 11</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="scripts/page-transitions.js"></script>
+    <title>Letter 11 - Tissues</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <!-- Back Button -->
-    <a href="letter-group2.html" class="back-btn" aria-label="Back to letters">← Back</a>
+    <div class="confetti-container" aria-hidden="true"></div>
 
     <div class="letter-page">
-        <h1>Letter 11</h1>
-        <p>This is the placeholder content for letter 11. Replace this with your actual letter content.</p>
+        <h1>Letter 11: Tissues</h1>
+        <div class="letter-content">Dear Jayme,
+
+Which one is my drink and which one is yours? Does it even matter? Because somehow I still remember something as small as that, the little things that shouldn't have mattered, but somehow did. The little moments where we didn't even think about what we were doing, like when I would purposely put my lips where you had just put yours, not because it was some huge romantic gesture, but because it was such a simple, silly way of feeling close to you.
+
+I think that's the kind of thing I miss: not just the big memories, but the tiny ones, the ones nobody else would understand, and the moments that would sound meaningless if I explained them to someone else, but somehow meant everything because they belonged to us.
+
+I think a peculiar life creates particular people. The strange things we go through, the things we survive, and the things that change us all leave little marks behind. They shape the way we see the world. And maybe that's why everyone carries things that other people cannot see: their own memories, their own fears, and their own moments where they wondered if they were the only person who had ever felt that way.
+
+I think sometimes we convince ourselves that our pain is completely unique, that no one else could possibly understand, or that whatever happened to us has never happened to anyone before. But then you read, you listen, and you find someone else's words describing something you thought only existed inside your own head. And suddenly, you realize you weren't the only person who felt it.
+
+That's one of the reasons I love books so much: they remind us that the things that hurt us are also the things that connect us, the fears, the heartbreaks, the moments where we felt completely alone. Someone else has felt them too, written about them, and survived them. I think that's a strange comfort, not because it makes the pain disappear, but because it means we were never the only ones carrying it.
+
+I remember this feeling of having so much inside me that I wanted to say, so many thoughts, and so many things I wanted you to understand. For the longest time, I thought the hardest part was not knowing what to say, but maybe that wasn't the truth. Maybe the hardest part was wondering whether anything I said would actually matter, whether my words would reach you the way I intended them to, or whether you would understand the meaning behind them or if they would just become more noise.
+
+I think that fear exists because words are imperfect. Sometimes you can spend hours trying to explain something that you feel immediately, and sometimes you can write everything down and still feel like the most important part is missing: the feeling, the thing underneath the words, the thing you were actually trying to say.
+
+And I think that's why I've always struggled with certain things, because I don't want to just say something; I want to be understood. I want the person hearing it to know what I meant, not just what I said. But maybe that's impossible sometimes. Maybe part of loving someone is accepting that you can never completely enter another person's mind, and that you can only offer pieces of yourself and hope they understand what you're trying to give.
+
+I think you and I both know what it feels like to be misunderstood, to have people see one part of you and decide that's all there is, or to have someone hear your words but miss the feeling behind them. And maybe that's why being understood feels so important, because when someone finally does understand you, even a little, it feels like being found, like someone walked into a room you thought you were trapped in alone.
+
+I think about how much of ourselves we hide, how many times we rehearse conversations in our heads before actually having them, and how many times we rewrite what we want to say because we're afraid the first version isn't good enough. Maybe we aren't afraid because we have nothing to say, but maybe because we have too much. What if we finally open our mouths and the words still fail? What if everything we've been carrying cannot fit into a sentence? What if someone looks at everything we tried to explain and still doesn't understand?
+
+I think that's one of the hardest parts about being human: wanting to be known while being terrified of being seen. But Jayme, I hope you know that even when words fail, moments don't. The things we experienced still existed, the laughter still happened, the conversations still happened, and the small things we did still mattered. Not because they lasted forever or changed the entire world, but because, for a little while, they were ours. And I think that's enough.
+
+Sometimes love is not about finding the perfect words; sometimes it's just remembering the drink that was yours and the drink that was mine, remembering the little things, and remembering that, for a moment, someone was there beside you.</div>
         <div class="back-link">
-            <a href="letter-group2.html">← Back to Letters</a>
+            <a href="../letter-group2.html">← Back to Letters 7-12</a>
         </div>
     </div>
-    <script src="scripts/page-transitions.js"></script>
+
+    <script>
+        const confettiContainer = document.querySelector('.confetti-container');
+        const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9a', '#a29bfe', '#fd79a8', '#00cec9', '#fdcb6e', '#e17055', '#74b9ff', '#fab1a0', '#55efc4', '#ffeaa7', '#ff7675', '#a29bfe'];
+
+        function createConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 8 + 6 + 'px';
+                confetti.style.height = Math.random() * 8 + 6 + 'px';
+                confetti.style.animationDuration = Math.random() * 4 + 6 + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        createConfetti();
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (prefersReducedMotion.matches) {
+            confettiContainer.style.display = 'none';
+        }
+    </script>
+    <script src="../scripts/page-transitions.js"></script>
 </body>
 </html>

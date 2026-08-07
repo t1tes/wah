@@ -4,21 +4,72 @@
     <meta name="view-transition" content="same-origin">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter 16</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="scripts/page-transitions.js"></script>
+    <title>Letter 16 - Call me</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <!-- Back Button -->
-    <a href="letter-group3.html" class="back-btn" aria-label="Back to letters">← Back</a>
+    <div class="confetti-container" aria-hidden="true"></div>
 
     <div class="letter-page">
-        <h1>Letter 16</h1>
-        <p>This is the placeholder content for letter 16. Replace this with your actual letter content.</p>
+        <h1>Letter 16: Call me</h1>
+        <div class="letter-content">Dear Jayme,
+
+What do you see?
+
+I remember when you called me out of nowhere because you were having a panic attack. I remember how sudden it was, and how in that moment, you weren't trying to pretend everything was fine; you just reached out. And I think that meant more than you probably realized, because I know there have been so many other moments where you chose to handle everything yourself, moments where you kept things quiet, and moments where you convinced yourself that you could just get through it alone.
+
+But Jayme, you don't always have to be the person who handles everything. You're allowed to call, you're allowed to say that you're struggling, and you're allowed to let someone sit beside you in the middle of something difficult. I think people sometimes forget that needing someone doesn't make you weak; it just means you're human.
+
+And I know you've always wanted someone to truly see you: not just the version of you that is okay, or the version that makes people laugh, or the version that can explain everything, but the real one. The one who gets scared, the one who doesn't always know what to do, and the one who sometimes needs someone else to say, "I'm here."
+
+But maybe life is also teaching you something important: maybe it's teaching you how to be a witness to yourself. Because at the end of the day, even when people love us deeply, there are moments where we have to sit with ourselves, where we have to become the person who notices our own pain, the person who says, "This is hard, but I am still here," the person who stays.
+
+I think that's one of the hardest things about growing up: realizing that other people can love you, but they cannot live your life for you. They can hold your hand, walk beside you, and remind you who you are when you forget, but eventually, you have to learn how to recognize yourself too.
+
+And I hope you do. I hope you learn to look at yourself with the same kindness you give to other people. Because I know you can be so understanding toward everyone else: you notice things, you care, and you remember. But sometimes I think you forget that you deserve that same attention from yourself.
+
+I think about how strange distance is: how someone can be far away and yet somehow still feel close, or how someone can not physically be beside you but still exist in so many parts of your life, in memories, in habits, and in the way certain places feel different because of them.
+
+I remember reading something about how sometimes we think separation means losing someone, but maybe it doesn't always work that way. Maybe someone can leave a place and still remain part of your world; maybe distance changes the shape of love, but it doesn't erase that it existed.
+
+I don't think about the day when I'll see you again because I don't want to make everything depend on that one moment. I don't need to see you to know that you were real, and I don't need a future reunion to prove that what we had mattered. You haven't completely left me; you're still somewhere in the same world, still seeing the same sky, and still existing under the same sun. And maybe that's enough for now.
+
+I still believe that one day, if our paths cross again, I'll be able to wrap my arms around you like before. Not because nothing changed (a lot probably will, as we will both become different people and live different lives), but maybe some things will still feel familiar. Maybe there will still be a part of me that recognizes you, and maybe there will still be a part of you that recognizes me.
+
+Until then, I hope you remember this: you don't have to wait until you are completely falling apart before you reach for someone, and you don't have to prove that you can survive everything alone. Sometimes the bravest thing you can do is admit that you need a hand.
+
+So if you ever need one, call me.</div>
         <div class="back-link">
-            <a href="letter-group3.html">← Back to Letters</a>
+            <a href="../letter-group3.html">← Back to Letters 13-18</a>
         </div>
     </div>
-    <script src="scripts/page-transitions.js"></script>
+
+    <script>
+        const confettiContainer = document.querySelector('.confetti-container');
+        const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9a', '#a29bfe', '#fd79a8', '#00cec9', '#fdcb6e', '#e17055', '#74b9ff', '#fab1a0', '#55efc4', '#ffeaa7', '#ff7675', '#a29bfe'];
+
+        function createConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 8 + 6 + 'px';
+                confetti.style.height = Math.random() * 8 + 6 + 'px';
+                confetti.style.animationDuration = Math.random() * 4 + 6 + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        createConfetti();
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (prefersReducedMotion.matches) {
+            confettiContainer.style.display = 'none';
+        }
+    </script>
+    <script src="../scripts/page-transitions.js"></script>
 </body>
 </html>
