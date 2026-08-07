@@ -4,7 +4,7 @@
     <meta name="view-transition" content="same-origin">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter 1</title>
+    <title>Letter</title>
     <link rel="stylesheet" href="../css/style.css">
     <style>
         .transition-page {
@@ -17,19 +17,22 @@
             justify-content: center;
             z-index: 100;
             font-family: 'JMHTypewriter', monospace;
+            padding: 2rem;
+            box-sizing: border-box;
         }
         .transition-text {
-            font-size: clamp(1.5rem, 4vw, 3rem);
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
             color: #000;
             text-align: center;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            line-height: 1.6;
             cursor: pointer;
             padding: 2rem;
             transition: opacity 0.3s ease, transform 0.3s ease;
+            max-width: 90%;
         }
         .transition-text:hover {
             opacity: 0.7;
-            transform: scale(1.02);
+            transform: scale(1.01);
         }
         .letter-number {
             font-weight: bold;
@@ -51,13 +54,37 @@
     </div>
 
     <script>
+        // Letter messages in order (1-19)
+        const letterMessages = {
+            "Letter 1": "To Jayme - I promised I wouldn't hurt you,<br>you should've braced yourself.",
+            "Letter 2": "To Jayme - I don't want a different ending.<br>I want back the choice, before it, not to cause one.",
+            "Letter 3": "To Jayme - Explaining won't undo anything.<br>I am writing this anyway.",
+            "Letter 4": "For Jayme - I loved you badly,<br>and that is not the same as not loving you.",
+            "Letter 5": "For Jayme - I keep your name in my mouth<br>like a word in a language I'm no longer allowed to speak.",
+            "Letter 6": "For Jayme - I loved you carelessly,<br>which is another way of saying I did not love you well enough.",
+            "Letter 7": "To Jayme - I don't ask you to forgive me.<br>I only wanted you to know the love was real, even where the honesty was not.",
+            "Letter 8": "For Jayme - Love was never about deserving.<br>Good, because I don't.",
+            "Letter 9": "For Jayme - I think of the time before I broke it — before I broke us —<br>the way people think of summers that have ended.",
+            "Letter 10": "To Jayme - Sorry is a small word for a large wound.<br>I am aware the two do not match.",
+            "Letter 11": "For Jayme - You were the safest place I knew,<br>and I burned it down while standing inside it.",
+            "Letter 12": "To Jayme - There is a version of this story where I don't do the thing I did.<br>I do not live in that story. I live in this one, missing you.",
+            "Letter 13": "For Jayme - I did not break your trust.<br>I spent it, carelessly, as though it would never run out.",
+            "Letter 14": "For Jayme - The clock does not run backward,<br>no matter how many nights I have asked it to.",
+            "Letter 15": "For Jayme - Regret is a small room.<br>I have been living in it since you left.",
+            "Letter 16": "For Jayme - If I could turn back time, I would not ask for a different ending.<br>I would ask for a different me.",
+            "Letter 17": "For Jayme - Some people miss a place.<br>I miss a person who no longer wants to be found by me.",
+            "Letter 18": "To Jayme - Wherever you are, I hope you are happy,<br>and I hope, in some small and undeserved corner of your heart, you remember that I loved you.",
+            "Letter 19": "For Jayme - Some silences are just<br>the sound of being caught."
+        };
+
         // Get the target letter page from URL parameter
         const urlParams = new URLSearchParams(window.location.search);
         const targetPage = urlParams.get('target') || 'letter1-1.html';
-
-        // Update text with letter name if provided
         const letterName = urlParams.get('name') || 'Letter 1';
-        document.getElementById('transitionText').innerHTML = `Click to open <span class="letter-number">${letterName}</span>`;
+
+        // Update text with letter message
+        const message = letterMessages[letterName] || `Click to open ${letterName}`;
+        document.getElementById('transitionText').innerHTML = message;
 
         // Click to proceed
         document.getElementById('transitionPage').addEventListener('click', () => {
