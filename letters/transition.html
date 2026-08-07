@@ -55,26 +55,27 @@
 
     <script>
         // Letter messages in order (1-19)
+        // Format: "For/To Jayme -" on first line, rest on next line
         const letterMessages = {
-            "Letter 1": "To Jayme - I promised I wouldn't hurt you,<br>you should've braced yourself.",
-            "Letter 2": "To Jayme - I don't want a different ending.<br>I want back the choice, before it, not to cause one.",
-            "Letter 3": "To Jayme - Explaining won't undo anything.<br>I am writing this anyway.",
-            "Letter 4": "For Jayme - I loved you badly,<br>and that is not the same as not loving you.",
-            "Letter 5": "For Jayme - I keep your name in my mouth<br>like a word in a language I'm no longer allowed to speak.",
-            "Letter 6": "For Jayme - I loved you carelessly,<br>which is another way of saying I did not love you well enough.",
-            "Letter 7": "To Jayme - I don't ask you to forgive me.<br>I only wanted you to know the love was real, even where the honesty was not.",
-            "Letter 8": "For Jayme - Love was never about deserving.<br>Good, because I don't.",
-            "Letter 9": "For Jayme - I think of the time before I broke it — before I broke us —<br>the way people think of summers that have ended.",
-            "Letter 10": "To Jayme - Sorry is a small word for a large wound.<br>I am aware the two do not match.",
-            "Letter 11": "For Jayme - You were the safest place I knew,<br>and I burned it down while standing inside it.",
-            "Letter 12": "To Jayme - There is a version of this story where I don't do the thing I did.<br>I do not live in that story. I live in this one, missing you.",
-            "Letter 13": "For Jayme - I did not break your trust.<br>I spent it, carelessly, as though it would never run out.",
-            "Letter 14": "For Jayme - The clock does not run backward,<br>no matter how many nights I have asked it to.",
-            "Letter 15": "For Jayme - Regret is a small room.<br>I have been living in it since you left.",
-            "Letter 16": "For Jayme - If I could turn back time, I would not ask for a different ending.<br>I would ask for a different me.",
-            "Letter 17": "For Jayme - Some people miss a place.<br>I miss a person who no longer wants to be found by me.",
-            "Letter 18": "To Jayme - Wherever you are, I hope you are happy,<br>and I hope, in some small and undeserved corner of your heart, you remember that I loved you.",
-            "Letter 19": "For Jayme - Some silences are just<br>the sound of being caught."
+            "Letter 1": "To Jayme -<br>I promised I wouldn't hurt you, you should've braced yourself.",
+            "Letter 2": "To Jayme -<br>I don't want a different ending. I want back the choice, before it, not to cause one.",
+            "Letter 3": "To Jayme -<br>Explaining won't undo anything. I am writing this anyway.",
+            "Letter 4": "For Jayme -<br>I loved you badly, and that is not the same as not loving you.",
+            "Letter 5": "For Jayme -<br>I keep your name in my mouth like a word in a language I'm no longer allowed to speak.",
+            "Letter 6": "For Jayme -<br>I loved you carelessly, which is another way of saying I did not love you well enough.",
+            "Letter 7": "To Jayme -<br>I don't ask you to forgive me. I only wanted you to know the love was real, even where the honesty was not.",
+            "Letter 8": "For Jayme -<br>Love was never about deserving. Good, because I don't.",
+            "Letter 9": "For Jayme -<br>I think of the time before I broke it — before I broke us — the way people think of summers that have ended.",
+            "Letter 10": "To Jayme -<br>Sorry is a small word for a large wound. I am aware the two do not match.",
+            "Letter 11": "For Jayme -<br>You were the safest place I knew, and I burned it down while standing inside it.",
+            "Letter 12": "To Jayme -<br>There is a version of this story where I don't do the thing I did. I do not live in that story. I live in this one, missing you.",
+            "Letter 13": "For Jayme -<br>I did not break your trust. I spent it, carelessly, as though it would never run out.",
+            "Letter 14": "For Jayme -<br>The clock does not run backward, no matter how many nights I have asked it to.",
+            "Letter 15": "For Jayme -<br>Regret is a small room. I have been living in it since you left.",
+            "Letter 16": "For Jayme -<br>If I could turn back time, I would not ask for a different ending. I would ask for a different me.",
+            "Letter 17": "For Jayme -<br>Some people miss a place. I miss a person who no longer wants to be found by me.",
+            "Letter 18": "To Jayme -<br>Wherever you are, I hope you are happy, and I hope, in some small and undeserved corner of your heart, you remember that I loved you.",
+            "Letter 19": "For Jayme -<br>Some silences are just the sound of being caught."
         };
 
         // Get the target letter page from URL parameter
