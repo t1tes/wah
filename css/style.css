@@ -462,9 +462,11 @@ body.letter-group-page-body {
 }
 
 .letter-page h1 {
-    margin-bottom: 30px;
+    margin-bottom: calc(4 * 1.8rem); /* 4 lines of spacing at content line-height */
     font-size: 3.5rem;
     letter-spacing: 1.5px;
+    font-family: 'PrettyInside', cursive, sans-serif;
+    font-weight: normal;
     text-shadow:
         0 2px 4px rgba(0, 0, 0, 0.6),
         0 4px 8px rgba(0, 0, 0, 0.4),
