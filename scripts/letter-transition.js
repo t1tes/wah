@@ -4,24 +4,36 @@
 (function() {
     'use strict';
 
+    console.log('[LetterTransition] Module loaded');
+
     let pendingHref = null;
 
     function initLetterTransitions() {
+        console.log('[LetterTransition] initLetterTransitions called');
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        console.log('[LetterTransition] prefersReducedMotion:', prefersReducedMotion);
         if (prefersReducedMotion) return;
 
         const letterLinks = document.querySelectorAll('.letter-group-page ul li a, .letter-group-page .letter-19-title');
+        console.log('[LetterTransition] Found letter links:', letterLinks.length);
         if (letterLinks.length === 0) return;
 
         injectStyles();
         const overlay = createOverlay();
         document.body.appendChild(overlay);
+        console.log('[LetterTransition] Overlay added to body');
 
-        letterLinks.forEach(link => {
-            link.addEventListener('click', (e) => handleLetterClick(e, link, overlay));
+        letterLinks.forEach((link, i) => {
+            console.log(`[LetterTransition] Link ${i}:`, link.href);
+            link.addEventListener('click', (e) => {
+                console.log('[LetterTransition] Letter link clicked:', link.href);
+                handleLetterClick(e, link, overlay);
+            });
         });
+        console.log('[LetterTransition] Click handlers attached');
 
         overlay.addEventListener('click', () => {
+            console.log('[LetterTransition] Overlay clicked, pendingHref:', pendingHref);
             if (pendingHref) {
                 window.location.href = pendingHref;
                 pendingHref = null;
@@ -68,21 +80,26 @@
     }
 
     function handleLetterClick(e, link, overlay) {
+        console.log('[LetterTransition] handleLetterClick called');
         e.preventDefault();
         const href = link.getAttribute('href');
+        console.log('[LetterTransition] href:', href);
         if (!href) return;
         pendingHref = href;
 
         const img = link.querySelector('img');
         const letterName = img?.getAttribute('alt') || link.textContent.trim() || 'this letter';
+        console.log('[LetterTransition] letterName:', letterName);
         overlay._textElement.textContent = `Click to open ${letterName}`;
 
         overlay.style.display = 'flex';
         overlay.offsetHeight;
         overlay.classList.add('visible');
+        console.log('[LetterTransition] Overlay shown');
     }
 
     function hideOverlay(overlay) {
+        console.log('[LetterTransition] hideOverlay called');
         overlay.classList.remove('visible');
         setTimeout(() => overlay.style.display = 'none', 300);
     }
@@ -90,11 +107,15 @@
     window.initLetterTransitions = initLetterTransitions;
 
     // Auto-init on letter group pages
+    console.log('[LetterTransition] Checking for .letter-group-page...');
     if (document.querySelector('.letter-group-page')) {
+        console.log('[LetterTransition] Found .letter-group-page, readyState:', document.readyState);
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initLetterTransitions);
         } else {
             initLetterTransitions();
         }
+    } else {
+        console.log('[LetterTransition] No .letter-group-page found');
     }
 })();
