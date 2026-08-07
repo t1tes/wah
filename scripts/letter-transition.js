@@ -4,6 +4,8 @@
 (function() {
     'use strict';
 
+    console.log('[LetterTransition] Module loaded');
+
     // Guard to prevent multiple simultaneous transitions
     let isTransitioning = false;
 
@@ -15,6 +17,7 @@
      * @param {number} options.fadeDuration - Fade in/out duration in ms (default: 300)
      */
     function initLetterTransitions(options = {}) {
+        console.log('[LetterTransition] initLetterTransitions called', options);
         const config = {
             defaultText: options.defaultText || 'Opening Letter...',
             holdDuration: options.holdDuration || 1800,
@@ -23,15 +26,25 @@
 
         // Check for reduced motion preference
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        console.log('[LetterTransition] prefersReducedMotion:', prefersReducedMotion);
         if (prefersReducedMotion) {
+            console.log('[LetterTransition] Skipping - reduced motion enabled');
             return; // Skip transition entirely for reduced motion users
         }
 
         // Select all letter links in the letter group page
         const letterLinks = document.querySelectorAll('.letter-group-page ul li a, .letter-group-page .letter-19-title');
+        console.log('[LetterTransition] Found letter links:', letterLinks.length);
         if (letterLinks.length === 0) {
+            console.log('[LetterTransition] No letter links found, aborting');
             return;
         }
+
+        // Log each link for debugging
+        letterLinks.forEach((link, i) => {
+            const img = link.querySelector('img');
+            console.log(`[LetterTransition] Link ${i}:`, link.href, img?.alt || link.textContent?.trim());
+        });
 
         // Create and inject overlay styles
         injectOverlayStyles(config.fadeDuration);
@@ -39,13 +52,16 @@
         // Create overlay element
         const overlay = createOverlay(config.defaultText, config.fadeDuration);
         document.body.appendChild(overlay);
+        console.log('[LetterTransition] Overlay added to body');
 
         // Attach click handlers to each letter link
         letterLinks.forEach((link, index) => {
             link.addEventListener('click', (event) => {
+                console.log('[LetterTransition] Click detected on:', link.href);
                 handleLetterClick(event, link, overlay, config);
             });
         });
+        console.log('[LetterTransition] Click handlers attached');
 
         // Listen for reduced motion changes
         const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -136,8 +152,11 @@
      * Handle click on a letter link
      */
     function handleLetterClick(event, link, overlay, config) {
+        console.log('[LetterTransition] handleLetterClick called');
+
         // Prevent multiple simultaneous transitions
         if (isTransitioning) {
+            console.log('[LetterTransition] Already transitioning, ignoring click');
             event.preventDefault();
             return;
         }
@@ -146,6 +165,7 @@
         event.preventDefault();
 
         const href = link.getAttribute('href');
+        console.log('[LetterTransition] Navigating to:', href);
         if (!href) {
             isTransitioning = false;
             return;
@@ -155,6 +175,7 @@
         const img = link.querySelector('img');
         const altText = img ? img.getAttribute('alt') : '';
         const letterName = altText || link.textContent.trim() || config.defaultText.replace('...', '').trim();
+        console.log('[LetterTransition] Letter name:', letterName);
 
         // Show personalized text
         overlay._textElement.textContent = `Opening ${letterName}...`;
@@ -164,14 +185,17 @@
         // Force reflow to ensure transition works
         overlay.offsetHeight;
         overlay.classList.add('visible');
+        console.log('[LetterTransition] Overlay shown');
 
         // Hold then fade out and navigate
         setTimeout(() => {
             overlay.classList.remove('visible');
             overlay.classList.add('fade-out');
+            console.log('[LetterTransition] Fade out started');
 
             setTimeout(() => {
                 // Navigate to the letter page
+                console.log('[LetterTransition] Navigating now to:', href);
                 window.location.href = href;
             }, config.fadeDuration);
         }, config.holdDuration);
