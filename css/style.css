@@ -449,7 +449,7 @@ body.letter-group-page-body {
 .letter-page {
     position: relative;
     min-height: 100vh;
-    background: #000 url('../media/letter-bg.png') center / cover no-repeat;
+    background: #000 url('../media/letter-bg.png') center / contain no-repeat;
     color: #000;
     font-family: 'HuhFont', monospace;
     display: flex;
