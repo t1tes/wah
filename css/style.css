@@ -463,7 +463,7 @@ body.letter-group-page-body {
 
 .letter-page h1 {
     margin-bottom: calc(4 * 1.8rem); /* 4 lines of spacing at content line-height */
-    font-size: 3.5rem;
+    font-size: 5rem;
     letter-spacing: 1.5px;
     font-family: 'PrettyInside', cursive, sans-serif;
     font-weight: normal;
