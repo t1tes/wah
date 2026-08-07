@@ -449,7 +449,15 @@ body.letter-group-page-body {
 .letter-page {
     position: relative;
     min-height: 100vh;
-    background: #000 url('../media/letter-bg.png') center / contain no-repeat;
+    /* NOTE: longhand (not shorthand) on purpose. The `background` shorthand
+       with a color + url + position/size in one declaration causes Chromium
+       to silently drop the image in some cases — verified in headless paint.
+       Splitting into individual properties paints the notebook reliably. */
+    background-color: #000;
+    background-image: url('../media/letter-bg.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
     color: #000;
     font-family: 'HuhFont', monospace;
     display: flex;
