@@ -463,7 +463,7 @@ body.letter-group-page-body {
 
 .letter-page h1 {
     margin-bottom: 30px;
-    font-size: 2.3rem;
+    font-size: 3rem;
     letter-spacing: 1.5px;
     text-shadow:
         0 2px 4px rgba(0, 0, 0, 0.6),
@@ -473,7 +473,7 @@ body.letter-group-page-body {
 
 .letter-page .letter-content {
     font-family: 'HuhFont', monospace;
-    font-size: 1.25rem;
+    font-size: 1.75rem;
     line-height: 1.8;
     max-width: 800px;
     margin: 0 auto 30px auto;
