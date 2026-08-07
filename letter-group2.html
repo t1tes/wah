@@ -191,26 +191,5 @@
     </script>
     <script src="scripts/page-transitions.js" onerror="console.error('[LetterTransition] Failed to load page-transitions.js')"></script>
     <script src="scripts/letter-transition.js" onload="console.log('[LetterTransition] Script loaded successfully')" onerror="console.error('[LetterTransition] Failed to load letter-transition.js')"></script>
-    <script>
-        (function() {
-            function init() {
-                console.log('[LetterTransition] Init function running, readyState:', document.readyState);
-                if (typeof initLetterTransitions === 'function') {
-                    initLetterTransitions({
-                        defaultText: 'Opening Letter...',
-                        holdDuration: 1800
-                    });
-                } else {
-                    console.error('[LetterTransition] initLetterTransitions not defined - script load failed?');
-                    console.log('[LetterTransition] window.initLetterTransitions:', window.initLetterTransitions);
-                }
-            }
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', init);
-            } else {
-                init();
-            }
-        })();
-    </script>
 </body>
 </html>

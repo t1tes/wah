@@ -1,26 +1,24 @@
 // Letter Transition Overlay Module
-// Provides a full-screen transition effect when clicking letter links
+// Shows a full-screen overlay that requires a click to proceed to the letter
 
 (function() {
     'use strict';
 
     console.log('[LetterTransition] Module loaded');
 
-    // Guard to prevent multiple simultaneous transitions
-    let isTransitioning = false;
+    // Store the target href for navigation
+    let pendingHref = null;
 
     /**
      * Initialize letter transitions for all letter links on the page
      * @param {Object} options - Configuration options
-     * @param {string} options.defaultText - Default text to show (default: "Opening Letter...")
-     * @param {number} options.holdDuration - How long to hold the overlay in ms (default: 1800)
-     * @param {number} options.fadeDuration - Fade in/out duration in ms (default: 300)
+     * @param {string} options.defaultText - Default text prefix (default: "Click to open ")
+     * @param {number} options.fadeDuration - Fade in duration in ms (default: 300)
      */
     function initLetterTransitions(options = {}) {
         console.log('[LetterTransition] >>> initLetterTransitions called <<<', options);
         const config = {
-            defaultText: options.defaultText || 'Opening Letter...',
-            holdDuration: options.holdDuration || 1800,
+            defaultText: options.defaultText || 'Click to open ',
             fadeDuration: options.fadeDuration || 300,
         };
 
@@ -29,7 +27,7 @@
         console.log('[LetterTransition] prefersReducedMotion:', prefersReducedMotion);
         if (prefersReducedMotion) {
             console.log('[LetterTransition] Skipping - reduced motion enabled');
-            return; // Skip transition entirely for reduced motion users
+            return;
         }
 
         // Select all letter links in the letter group page
@@ -50,18 +48,28 @@
         injectOverlayStyles(config.fadeDuration);
 
         // Create overlay element
-        const overlay = createOverlay(config.defaultText, config.fadeDuration);
+        const overlay = createOverlay(config);
         document.body.appendChild(overlay);
         console.log('[LetterTransition] Overlay added to body');
 
         // Attach click handlers to each letter link
         letterLinks.forEach((link, index) => {
             link.addEventListener('click', (event) => {
-                console.log('[LetterTransition] Click detected on:', link.href);
+                console.log('[LetterTransition] Letter link clicked:', link.href);
                 handleLetterClick(event, link, overlay, config);
             });
         });
-        console.log('[LetterTransition] Click handlers attached');
+        console.log('[LetterTransition] Letter click handlers attached');
+
+        // Click on overlay to proceed
+        overlay.addEventListener('click', () => {
+            console.log('[LetterTransition] Overlay clicked, navigating to:', pendingHref);
+            if (pendingHref) {
+                window.location.href = pendingHref;
+                pendingHref = null;
+            }
+            hideOverlay(overlay, config.fadeDuration);
+        });
 
         // Listen for reduced motion changes
         const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -75,9 +83,9 @@
     }
 
     /**
-     * Create the overlay element with text
+     * Create the overlay element with clickable text
      */
-    function createOverlay(defaultText, fadeDuration) {
+    function createOverlay(config) {
         const overlay = document.createElement('div');
         overlay.className = 'letter-transition-overlay';
         overlay.style.cssText = `
@@ -90,7 +98,8 @@
             z-index: 9999;
             opacity: 0;
             pointer-events: none;
-            transition: opacity ${fadeDuration}ms ease;
+            transition: opacity ${config.fadeDuration}ms ease;
+            cursor: pointer;
         `;
 
         const text = document.createElement('div');
@@ -101,9 +110,10 @@
             color: #fff;
             text-align: center;
             text-shadow: 0 2px 4px rgba(0,0,0,0.6);
-            padding: 1rem;
+            padding: 2rem;
+            max-width: 90%;
         `;
-        text.textContent = defaultText;
+        text.textContent = config.defaultText;
 
         overlay.appendChild(text);
         overlay._textElement = text;
@@ -119,9 +129,7 @@
         style.textContent = `
             .letter-transition-overlay.visible {
                 opacity: 1;
-            }
-            .letter-transition-overlay.fade-out {
-                opacity: 0;
+                pointer-events: auto;
             }
             .letter-transition-overlay-text {
                 animation: letterTransitionTextReveal ${fadeDuration}ms ease forwards;
@@ -149,56 +157,43 @@
     }
 
     /**
-     * Handle click on a letter link
+     * Handle click on a letter link - show overlay
      */
     function handleLetterClick(event, link, overlay, config) {
         console.log('[LetterTransition] handleLetterClick called');
 
-        // Prevent multiple simultaneous transitions
-        if (isTransitioning) {
-            console.log('[LetterTransition] Already transitioning, ignoring click');
-            event.preventDefault();
-            return;
-        }
-        isTransitioning = true;
-
         event.preventDefault();
 
         const href = link.getAttribute('href');
-        console.log('[LetterTransition] Navigating to:', href);
-        if (!href) {
-            isTransitioning = false;
-            return;
-        }
+        if (!href) return;
+
+        // Store href for overlay click
+        pendingHref = href;
 
         // Try to extract letter number/name from the link for personalized text
         const img = link.querySelector('img');
         const altText = img ? img.getAttribute('alt') : '';
-        const letterName = altText || link.textContent.trim() || config.defaultText.replace('...', '').trim();
-        console.log('[LetterTransition] Letter name:', letterName);
+        const letterName = altText || link.textContent.trim() || 'this letter';
 
         // Show personalized text
-        overlay._textElement.textContent = `Opening ${letterName}...`;
+        overlay._textElement.textContent = `${config.defaultText}${letterName}`;
 
         // Show overlay
         overlay.style.display = 'flex';
         // Force reflow to ensure transition works
         overlay.offsetHeight;
         overlay.classList.add('visible');
-        console.log('[LetterTransition] Overlay shown');
+        console.log('[LetterTransition] Overlay shown, waiting for click');
+    }
 
-        // Hold then fade out and navigate
+    /**
+     * Hide overlay after click
+     */
+    function hideOverlay(overlay, fadeDuration) {
+        overlay.classList.remove('visible');
         setTimeout(() => {
-            overlay.classList.remove('visible');
-            overlay.classList.add('fade-out');
-            console.log('[LetterTransition] Fade out started');
-
-            setTimeout(() => {
-                // Navigate to the letter page
-                console.log('[LetterTransition] Navigating now to:', href);
-                window.location.href = href;
-            }, config.fadeDuration);
-        }, config.holdDuration);
+            overlay.style.display = 'none';
+        }, fadeDuration);
     }
 
     // Export for use in pages
@@ -210,8 +205,8 @@
         const runInit = () => {
             console.log('[LetterTransition] Auto-init running');
             initLetterTransitions({
-                defaultText: 'Opening Letter...',
-                holdDuration: 1800
+                defaultText: 'Click to open ',
+                fadeDuration: 300
             });
         };
         if (document.readyState === 'loading') {
