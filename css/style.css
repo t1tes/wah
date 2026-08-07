@@ -494,17 +494,17 @@ body.letter-group-page-body {
     align-items: center;
     gap: 8px;
     font-size: 1.8rem;
-    color: #fff;
+    color: #fff !important;
     text-decoration: none;
     font-family: 'HuhFont', monospace;
 }
 
-.letter-page .back-link:visited {
-    color: #fff;
-}
-
-.letter-page .back-link:hover {
-    color: #fff;
+.letter-page .back-link:link,
+.letter-page .back-link:visited,
+.letter-page .back-link:hover,
+.letter-page .back-link:active,
+.letter-page .back-link:focus {
+    color: #fff !important;
     text-decoration: none;
 }
 
@@ -522,26 +522,25 @@ body.letter-group-page-body {
     background: transparent;
     border: none;
     border-radius: 0;
-    color: #fff;
+    color: #fff !important;
     font-family: 'JMHTypewriter', monospace;
     font-size: 0.85rem;
     letter-spacing: 0.5px;
     text-decoration: none;
-    transition: all 0.3s ease;
     box-shadow: none;
 }
 
-.back-btn:visited {
-    color: #fff;
-}
-
-.back-btn:hover {
-    color: #fff;
-    opacity: 0.7;
-    transform: none;
+.back-btn:link,
+.back-btn:visited,
+.back-btn:hover,
+.back-btn:active,
+.back-btn:focus {
+    color: #fff !important;
+    text-decoration: none;
     background: transparent;
     border: none;
     box-shadow: none;
+    opacity: 1;
 }
 
 .back-btn:active {
