@@ -186,12 +186,23 @@
     <script src="scripts/page-transitions.js"></script>
     <script src="scripts/letter-transition.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            initLetterTransitions({
-                defaultText: 'Opening Letter...',
-                holdDuration: 1800
-            });
-        });
+        (function() {
+            function init() {
+                if (typeof initLetterTransitions === 'function') {
+                    initLetterTransitions({
+                        defaultText: 'Opening Letter...',
+                        holdDuration: 1800
+                    });
+                } else {
+                    console.error('[LetterTransition] initLetterTransitions not defined - script load failed?');
+                }
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+        })();
     </script>
 </body>
 </html>
