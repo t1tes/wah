@@ -500,6 +500,10 @@ body.letter-group-page-body {
     font-family: 'HuhFont', monospace;
 }
 
+.letter-page .back-link:visited {
+    color: #fff;
+}
+
 .letter-page .back-link:hover {
     color: #fff;
     text-decoration: underline;
@@ -531,6 +535,10 @@ body.letter-group-page-body {
     text-decoration: none;
     transition: all 0.3s ease;
     box-shadow: none;
+}
+
+.back-btn:visited {
+    color: #fff;
 }
 
 .back-btn:hover {
