@@ -492,22 +492,39 @@ body.letter-group-page-body {
     bottom: 30px;
     left: 30px;
     z-index: 100;
+}
+
+.letter-page .back-link a {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     font-size: 1.8rem;
     color: #fff !important;
-    text-decoration: none;
+    text-decoration: none !important;
     font-family: 'HuhFont', monospace;
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
-.letter-page .back-link:link,
-.letter-page .back-link:visited,
-.letter-page .back-link:hover,
-.letter-page .back-link:active,
-.letter-page .back-link:focus {
+.letter-page .back-link a:link,
+.letter-page .back-link a:visited,
+.letter-page .back-link a:hover,
+.letter-page .back-link a:active,
+.letter-page .back-link a:focus,
+.letter-page .back-link a:focus-visible {
     color: #fff !important;
-    text-decoration: none;
+    text-decoration: none !important;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Back Button (fixed corner) - shared across pages */
@@ -521,33 +538,34 @@ body.letter-group-page-body {
     justify-content: center;
     gap: 6px;
     padding: 8px 0;
-    background: transparent;
-    border: none;
+    background: transparent !important;
+    border: none !important;
     border-radius: 0;
     color: #fff !important;
     font-family: 'JMHTypewriter', monospace;
     font-size: 0.85rem;
     letter-spacing: 0.5px;
-    text-decoration: none;
-    box-shadow: none;
+    text-decoration: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
 }
 
 .back-btn:link,
 .back-btn:visited,
 .back-btn:hover,
 .back-btn:active,
-.back-btn:focus {
+.back-btn:focus,
+.back-btn:focus-visible {
     color: #fff !important;
-    text-decoration: none;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    opacity: 1;
-}
-
-.back-btn:active {
-    transform: none;
-    opacity: 0.5;
+    text-decoration: none !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .back-btn:focus-visible {
