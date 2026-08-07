@@ -449,8 +449,16 @@ body.letter-group-page-body {
 .letter-page {
     position: relative;
     min-height: 100vh;
-    background: #000;
-    color: #fff;
+    /* NOTE: longhand (not shorthand) on purpose. The `background` shorthand
+       with a color + url + position/size in one declaration causes Chromium
+       to silently drop the image in some cases — verified in headless paint.
+       Splitting into individual properties paints the notebook reliably. */
+    background-color: #000;
+    background-image: url('../media/letter-bg.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    color: #000;
     font-family: 'HuhFont', monospace;
     display: flex;
     flex-direction: column;
@@ -467,10 +475,8 @@ body.letter-group-page-body {
     letter-spacing: 1.5px;
     font-family: 'PrettyInside', cursive, sans-serif;
     font-weight: normal;
-    text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.6),
-        0 4px 8px rgba(0, 0, 0, 0.4),
-        0 8px 16px rgba(0, 0, 0, 0.2);
+    color: #000;
+    text-shadow: none;
 }
 
 .letter-page .letter-content {
@@ -479,10 +485,8 @@ body.letter-group-page-body {
     line-height: 1.8;
     max-width: 950px;
     margin: 0 auto 30px auto;
-    color: #e0e0e0;
-    text-shadow:
-        0 1px 2px rgba(0, 0, 0, 0.5),
-        0 2px 4px rgba(0, 0, 0, 0.3);
+    color: #000;
+    text-shadow: none;
     text-align: center;
     white-space: pre-wrap;
 }
@@ -499,7 +503,7 @@ body.letter-group-page-body {
     align-items: center;
     gap: 8px;
     font-size: 1.8rem;
-    color: #fff !important;
+    color: #000 !important;
     text-decoration: none !important;
     font-family: 'HuhFont', monospace;
     -webkit-tap-highlight-color: transparent;
@@ -518,7 +522,7 @@ body.letter-group-page-body {
 .letter-page .back-link a:active,
 .letter-page .back-link a:focus,
 .letter-page .back-link a:focus-visible {
-    color: #fff !important;
+    color: #000 !important;
     text-decoration: none !important;
     background: transparent !important;
     border: none !important;
